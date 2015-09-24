@@ -117,7 +117,9 @@ one?: undefined;
 ```
 
 ### Closures
-When a function has free variables
+When a function definition (λ expression) has free variables, the
+result it returns is a "closure" because it is "closed" over those
+variables in the lexical context of the λ-expression.
 
 ### Lists
 - Similar to Linked List
