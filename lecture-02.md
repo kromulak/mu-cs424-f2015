@@ -66,9 +66,7 @@ one?: undefined;
 
 ### Conditionals
 ```scheme
-(if (guard value_if_true value_if_false))
-
-(if (zero? 0) (#t) (#f))
+(if guard value_if_true value_if_false)
 
 > (if (zero? 3) 7 8)
 8
