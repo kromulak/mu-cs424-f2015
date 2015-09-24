@@ -1,5 +1,208 @@
 Lecture 2: Starting Scheme
 ==========================
+
+- Brackets are important
+- Function calls - open brackets
+- Uses prefix notation
+
+Scheme has many dialects, we will be using [Racket](http://racket-lang.org)
+
+### Definitions
+Use the `define` keyword
+
+```scheme
+(define three (+ 1 2))
+```
+
+### Lambdas λ
+A lambda function is an anonymous function
+```scheme
+(lambda (x) (+ (* (x x) 1)))
+```
+
+```scheme
+(define hypot (lambda (x y) (sqrt (+ (expt x 2) (expt y 2)))))
+```
+
+```scheme
+> (hypot 3 4)
+5
+> (hypot 6 8)
+10
+> (hypot 7 8)
+10.63014581273465
+> (hypot 1 1)
+1.4142135623730951
+```
+
+### Booleans
+- `#t` - True
+- `#f` - False
+
+```scheme
+> =
+#<procedure:=>
+> (= 2 1)
+#f
+> (= 1 1)
+#t
+> (zero? 2)
+#f
+> (zero? 0)
+#t
+> zero?
+#<procedure:zero?>
+> one?
+one?: undefined;
+ cannot reference undefined identifier
+  context...:
+   /usr/share/racket/collects/racket/private/misc.rkt:87:7
+> (define one? (lambda (x) (= x 1)))
+> one?
+#<procedure:one?>
+> (one? 2)
+#f
+```
+
+### Conditionals
+```scheme
+(if (guard value_if_true value_if_false))
+
+(if (zero? 0) (#t) (#f))
+
+> (if (zero? 3) 7 8)
+8
+> (if (zero? 0) 7 8)
+7
+```
+
+**Note**: `if` will not evaluate both arguments eagerly
+
+### Factorial
+```scheme
+(define factorial
+  (lambda (n)
+    (if (<= n 0))
+      1
+      (* n
+        (factorial (- n 1)))))
+```
+
+### Loading files
+`(load "filename.scm")`
+
+```scheme
+(define make-pair
+  (λ (x y)
+    (λ (z) (if z x y))))
+
+(define get-fst
+  (λ (p) (p #t)))
+
+(define get-snd
+  (λ (p) (p #f)))
+
+(define make-pair2
+  (λ (x y)
+    (λ (z) (z x y))))
+
+(define get-fst2
+  (λ (p) (p (λ (x y) x))))
+
+(define get-snd2
+  (λ (p) (p (λ (x y) y))))
+```
+
+```scheme
+(define fred
+  (make-pair 1 2))
+```
+
+### Closures
+When a function has free variables
+
+### Lists
+- Similar to Linked List
+- Lists are heterogeneous, meaning they can contain multiple types
+
+```scheme
+(list 2 3 4 5)
+(list 2 (list 3 4) 5)
+```
+
+#### Head and Tail
+- Head - `car` - first element in list
+- Tail - `cdr` - The rest of the elements
+
+```scheme
+(define bob (list (2 3 4)))
+
+(car bob)
+> 1
+
+(cdr bob)
+> (3 4)
+
+(cdr (cdr bob))
+> (4)
+```
+
+#### Using `cons`
+- `cons` - Construct a list
+
+Make a list of 1 2 3 4
+```scheme
+(cons 1 (cons 2 (cons 3 (cons 4 null))))
+```
+
+### Recusrion
+```scheme
+(define my-length
+  (Lambda (xs)
+    (If null? Xs
+      0
+      (My-length (cdr xs)))))
+```
+
+### Symbols
+- Similar to Strings but can be used as an index
+- Similar to the :symbol syntax in Ruby
+
+`(quote car)` - defines a new symbol 'car'
+
+```scheme
+
+> "foo"
+"foo"
+> car
+#<procedure:car>
+> (quote car)
+car
+> (cons (quote car) (cons 3 null))
+(car 3)
+> (eq? (quote car) (quote cdr))
+#f
+> (eq? (quote car) (quote car))
+#t
+> (number? 3)
+#t
+> (symbol? 3)
+#f
+> (symbol? (quote foo))
+#t
+> (symbol? "foo")
+#f
+> (symbol->string (quote foo))
+"foo"
+> (string->symbol "bazonk")
+bazonk
+```
+
+### Bonus
+Scheme is actually a list of symbols and lists
+
+
+### Interpreter Output
 ````
 Welcome to Racket v6.1.
 > 7
@@ -228,9 +431,9 @@ bazonk
 (define fact
   (λ (n)
     (if (zero? n)
-	1
-	(* n
-	   (fact (- n 1))))))
+      1
+      (* n
+        (fact (- n 1))))))
 
 (define make-pair
   (λ (x y)
@@ -255,6 +458,6 @@ bazonk
 (define my-length
   (λ (xs)
     (if (null? xs)
-	0
-	(+ 1 (my-length (cdr xs))))))
+      0
+      (+ 1 (my-length (cdr xs))))))
 ````
