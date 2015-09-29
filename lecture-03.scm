@@ -10,7 +10,7 @@
 ;;; <number> ::= <integer> | <float>
 ;;; <integer> ::= ['-'] <digit>+
 ;;; <float> ::= ['-'] <digit>* '.' <digit>+ [ 'e' ['-'] <digit>+ ]
-;;;           | ['-'] <digit>+ '.' <digit>* [ 'e' ['-'] <digit>+ ] 
+;;;           | ['-'] <digit>+ '.' <digit>* [ 'e' ['-'] <digit>+ ]
 ;;; <variable> ::= ['a'|...|'z'|'0'|...|'9'|'+'|...]+     (restrictions, not reserved word)
 ;;; <special-form> ::= '(lambda (' <variable>* ')' <e> ')'
 ;;;                  | '(define' <variable> <e> ')'
@@ -146,7 +146,7 @@
 			    (d/dx v)))
 		     ((equal? (car e) '*)
 		      ;; Leibnitz Rule: d/dx u*v = u * dv/dx + du/dx * v
-		      (list '+ 
+		      (list '+
 			    (list '* u (d/dx v))
 			    (list '* (d/dx u) v)))
 		     (else (error "bad LLE" le))))
@@ -167,7 +167,7 @@
 			   (d/dx v)))
 		    ((equal? (car e) '*)
 		     ;; Leibnitz Rule: d/dx u*v = u * dv/dx + du/dx * v
-		     (list '+ 
+		     (list '+
 			   (list '* u (d/dx v))
 			   (list '* (d/dx u) v)))
 		    (else (error "bad LLE" le))))))))
