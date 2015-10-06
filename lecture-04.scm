@@ -10,7 +10,7 @@
 	  ((equal? e x) 1)
 	  ((symbol? e) 0)
 	  ((pair? e)
-	   (let ((f (car e))) ; extra level of parenthesis for 'let' function
+	   (let ((f (car e))) ; extra level of parenthesis for binding list in 'let' special form
 	     (apply (lookup f dtable)
 		    (append (cdr e) (map (λ (u) (d u x)) (cdr e))))))
 	  (else (error "bad LLE" le)))))
