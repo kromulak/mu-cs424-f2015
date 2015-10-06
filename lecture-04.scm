@@ -11,7 +11,7 @@
 	  ((symbol? e) 0)
 	  ((pair? e)
 	   (let ((f (car e))) ; extra level of parenthesis for 'let' function
-	     (apply (let f dtable)
+	     (apply (lookup f dtable)
 		    (append (cdr e) (map (λ (u) (d u x)) (cdr e))))))
 	  (else (error "bad LLE" le)))))
 
