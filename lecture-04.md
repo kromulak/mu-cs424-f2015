@@ -31,7 +31,7 @@
 *   Scheme is not designed for programming at large.
 *   Scheme has no abstraction barriers
 
-## Returning over complex expressions solution
+## Returning overly complex expressions solution:
 * Define an lle+ and lle*
 ```
 (define lle+
