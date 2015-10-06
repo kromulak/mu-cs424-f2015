@@ -134,6 +134,7 @@
 ;;; Deficiencies:
 ;;;  - returns overly-complex expressions
 ;;;  - code is ugly
+;;;  - only takes derivative with respect to 'x'
 '(define d/dx
    (λ (e)
      (cond ((number? e) 0)
