@@ -14,7 +14,15 @@
 		    (let ((vars (cadr e))
 			  (body (caddr e)))
 		      (list 'closure vars body env)))
-		   ((equal? f 'let) xxx)
+		   ((equal? f 'let)
+		    ;; MACRO:
+		    ;;  (let ((VAR EXPR)...) BODY)
+		    ;;    ==> ((λ (VAR...) BODY) EXPR...)
+		    (my-eval (let ((bindings (cadr e))
+				   (body (caddr e)))
+			       (cons (list 'λ (map car bindings) body)
+				     (map cdr bindings)))
+			     env))
 		   (else
 		    ;; regular function call
 		    (my-apply (my-eval f env)
