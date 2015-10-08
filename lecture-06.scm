@@ -13,9 +13,7 @@
 	     (cond ((or (equal? f 'λ) (equal? f 'lambda))
 		    (let ((vars (cadr e))
 			  (body (caddr e)))
-		      (list 'closure
-			    vars
-			    body)))
+		      (list 'closure vars body env)))
 		   ((equal? f 'let) xxx)
 		   (else
 		    ;; regular function call
@@ -28,7 +26,8 @@
   (λ (p args)
     (cond ((procedure? p) (apply p args))
 	  ((and (pair? p) (equal? (car p) 'closure))
-	   (my-eval (caddr p) (map list (cadr p) args)))
+	   (my-eval (caddr p) (append (map list (cadr p) args)
+				      (cadddr p))))
 	  (else (error "xxx")))))
 
 (define lookup (λ (k alist) (cadr (assoc k alist))))
