@@ -14,6 +14,14 @@
 		    (let ((vars (cadr e))
 			  (body (caddr e)))
 		      (list 'closure vars body env)))
+		   ((equal? f 'if)	; special form: if
+		    (let ((guard (cadr e))
+			  (then-e (caddr e))
+			  (else-e (cadddr e)))
+		      (my-eval (if (not (equal? (my-eval guard env) '#f))
+				   then-e
+				   else-e)
+			       env)))
 		   ((equal? f 'let)
 		    ;; MACRO:
 		    ;;  (let ((VAR EXPR)...) BODY)
