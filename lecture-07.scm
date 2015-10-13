@@ -14,18 +14,9 @@
 		    (let ((vars (cadr e))
 			  (body (caddr e)))
 		      (list 'closure vars body env)))
-		   ((equal? f 'if)	; macro using %if: if
-		    ;; (if GUARD E1 E2)  ==>  ((%if GUARD (λ () E1) (λ () E2)))
-		    (my-eval (list (cons '%if (cdr e))) env))
-		   ((equal? f 'let)
-		    ;; MACRO:
-		    ;;  (let ((VAR EXPR)...) BODY)
-		    ;;    ==> ((λ (VAR...) BODY) EXPR...)
-		    (my-eval (let ((bindings (cadr e))
-				   (body (caddr e)))
-			       (cons (list 'λ (map car bindings) body)
-				     (map cdr bindings)))
-			     env))
+		   ((equal? f 'quote) (cadr e))
+		   ((lookup-macro f)
+		    => (λ (expander) (my-eval (expander e) env)))
 		   (else
 		    ;; regular function call
 		    (my-apply (my-eval f env)
@@ -47,3 +38,29 @@
 			 (list '* (λ (x y) (* x y)))
 			 (list 'sin sin)
 			 (list '%if (λ (g t e) (if (not (equal? g '#f)) t e)))))
+
+(define lookup-macro
+  (λ (k) (cond ((assoc k macro-list) => cadr)
+	       (else #f))))
+
+(define if-expander
+  ;; (if GUARD E1 E2)  ==>  ((%if GUARD (λ () E1) (λ () E2)))
+  (λ (e)
+    (apply (λ (g e1 e2)
+	     (list (list '%if g (list 'λ '() e1) (list 'λ '() e2))))
+	   (cdr e))))
+
+(define let-expander
+  ;;  (let ((VAR EXPR)...) BODY) ==> ((λ (VAR...) BODY) EXPR...)
+  (λ (e) (let ((bindings (cadr e))
+	       (body (caddr e)))
+	   (cons (list 'λ (map car bindings) body)
+		 (map cadr bindings)))))
+
+
+(define cond-expander (λ (e) (error "homework")))
+
+(define macro-list
+  (list (list 'if if-expander)
+	(list 'let let-expander)
+	(list 'cond cond-expander)))
