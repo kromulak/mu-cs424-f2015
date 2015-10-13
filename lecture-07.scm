@@ -64,3 +64,18 @@
   (list (list 'if if-expander)
 	(list 'let let-expander)
 	(list 'cond cond-expander)))
+
+;; `e ==> (quasiquote e)
+;; ,e ==> (unquote e)
+;; ,@e ==> (unquote-splicing e)
+
+;;; Dotted Pair syntax:
+
+;; > (cons 'a 'b)
+;; (a . b)
+;; > '(a . b)
+;; (a . b)
+;; > '(a b c)
+;; (a b c)
+;; > '(a . (b . (c . ())))
+;; (a b c)
