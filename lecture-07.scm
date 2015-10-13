@@ -47,15 +47,15 @@
   ;; (if GUARD E1 E2)  ==>  ((%if GUARD (λ () E1) (λ () E2)))
   (λ (e)
     (apply (λ (g e1 e2)
-	     (quasiquote ((%if (unquote g) (λ () (unquote e1)) (λ () (unquote e2))))))
+	     `((%if ,g (λ () ,e1) (λ () ,e2))))
 	   (cdr e))))
 
 (define let-expander
   ;;  (let ((VAR EXPR)...) BODY) ==> ((λ (VAR...) BODY) EXPR...)
   (λ (e) (let ((bindings (cadr e))
 	       (body (caddr e)))
-	   (quasiquote ((λ (unquote (map car bindings)) (unquote body))
-			(unquote-splicing (map cadr bindings)))))))
+	   `((λ (,@(map car bindings)) ,body)
+	     ,@(map cadr bindings)))))
 
 
 (define cond-expander (λ (e) (error "homework")))
