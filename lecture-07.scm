@@ -14,14 +14,9 @@
 		    (let ((vars (cadr e))
 			  (body (caddr e)))
 		      (list 'closure vars body env)))
-		   ((equal? f 'if)	; special form: if
-		    (let ((guard (cadr e))
-			  (then-e (caddr e))
-			  (else-e (cadddr e)))
-		      (my-eval (if (not (equal? (my-eval guard env) '#f))
-				   then-e
-				   else-e)
-			       env)))
+		   ((equal? f 'if)	; macro using %if: if
+		    ;; (if GUARD E1 E2)  ==>  ((%if GUARD (λ () E1) (λ () E2)))
+		    (my-eval (list (cons '%if (cdr e))) env))
 		   ((equal? f 'let)
 		    ;; MACRO:
 		    ;;  (let ((VAR EXPR)...) BODY)
@@ -50,4 +45,5 @@
 
 (define global-env (list (list '+ (λ (x y) (+ x y)))
 			 (list '* (λ (x y) (* x y)))
-			 (list 'sin sin)))
+			 (list 'sin sin)
+			 (list '%if (λ (g t e) (if (not (equal? g '#f)) t e)))))
