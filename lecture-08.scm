@@ -51,6 +51,17 @@
   (λ (c n)
     (cfact-aux c 1 n)))
 
+(define cfact-aux
+  (λ (c a n)
+    (c= (λ () (c a))
+	(λ ()
+	  (c* (λ (atn)
+		(c- (λ (nm1)
+		      (cfact-aux c atn nm1))
+		    n 1))
+	      a n))
+	1 n)))
+
 '(define cfact-aux
    (λ:cfact_aux (c a n) ; return address
      (c= (λ:L1 () (c a))
