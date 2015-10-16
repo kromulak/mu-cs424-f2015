@@ -1,16 +1,16 @@
 ;;; Continuation Passing Style
-;;;  = CPS
+;;; = CPS
 
 ;;; Properties of CPS
-;;; - rewriting code, s.t.,
+;;; - rewriting code, such that:
 ;;; - no anonymous temporary value (all temps are named)
-;;;   No can write: a+b*c aka (+ a (* b c))
+;;;   You can't write: a+b*c aka (+ a (* b c))
 ;;;   because b*c needs a name.
-;;; - no non-tail-recursive procedure calls
+;;; - only tail-recursive procedure calls are allowed
 ;;; - never return a value (can only call continuation on it)
 ;;; - turns code inside-out and makes it all confusing
 
-;;; Add extra paramter to all procedures called the "continuation"
+;;; Add extra parameter to all procedures, called the "continuation"
 
 (define c+ (λ (c x y) (c (+ x y))))
 (define c* (λ (c x y) (c (* x y))))
@@ -24,9 +24,8 @@
 	1
 	(* n (fact (- n 1))))))
 
-
 ;;; TR-definition of factorial
-(define fact-tr
+(define fact
   (λ (n)
     (fact-aux 1 n)))
 
@@ -34,18 +33,18 @@
   (λ (a n)
     (if (= n 0)
 	a
-	(fact-aux (* a n) (- n 1)))))
+	(fact-aux (*a n) (- n 1)))))
 
 ;;; Convert to CPS
 
 (define cfact
   (λ (c n)
-    (c= (λ () (c 1))
-	(λ () (c- (λ (nm1)
-		    (cfact (λ (fnm1)
-			     (c* c n fnm1))
-			   nm1))
-		  n 1))
+    (c= (λ () (c 1)
+	   (λ () (c - (λ (nm1) ;; nm1 = n-1
+			(cfact (λ (fnm1)) ;; fnm1 = (n-1)!
+			       (c* c n fnm1))
+			nm1))
+	      n 1))
 	n 0)))
 
 (define cfact-tr
@@ -53,45 +52,34 @@
     (cfact-aux c 1 n)))
 
 (define cfact-aux
-  (λ (c a n)
-    (c= (λ () (c a))
-	(λ ()
-	  (c* (λ (atn)
-		(c- (λ (nm1)
-		      (cfact-aux c atn nm1))
-		    n 1))
+  (λ:cfact_aux (c a n) ; return address
+    (c= (λ:L1 () (c a))
+        (λ:L2 ()
+	  (c* (λ:L3 (atn)
+		(c- (λ:L4 (nm1)
+		      (cfact-aux C atn nm1)) n 1))
 	      a n))
-	1 n)))
+        1 n)))
+
+;;cfact_aux:
+;;	push 1
+;;	push n
+;;	= L2
+;;
+;;L1: push a
+;;	ret
+;;L2:	push a
+;;	push n
+;;	TIMES
+;;	...
+;;	SUBTRACT
+;;	...
+
 
 ;; > (cfact (λ (r) (list r r r)) 3)
 ;; (6 6 6)
 
-(define id (λ (x) x))			; identity function
+(define id (λ (x) x)) ; identity function
 
 ;; > (cfact id 100)
-;; 93326...
-
-(define cfact-aux
-  (λ:cfact_aux (c a n)
-    (c= (λ:L1 () (c a))
-	(λ:L2 ()
-	  (c* (λ:L3 (atn)
-		(c- (λ:L4 (nm1)
-		      (cfact-aux c atn nm1))
-		    n 1))
-	      a n))
-	1 n)))
-
-;; cfact_aux:
-;; 	push 1
-;; 	push n
-;; 	= L2
-;; L1:	push a
-;; 	ret
-;; L2:
-;; 	push a
-;; 	push n
-;; 	TIMES
-;; 	...
-;; 	SUBTRACT
-;; 	...
+;; 933262154...
