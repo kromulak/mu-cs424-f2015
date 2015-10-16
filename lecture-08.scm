@@ -25,7 +25,7 @@
 	(* n (fact (- n 1))))))
 
 ;;; TR-definition of factorial
-(define fact
+(define fact-tr
   (λ (n)
     (fact-aux 1 n)))
 
@@ -33,18 +33,18 @@
   (λ (a n)
     (if (= n 0)
 	a
-	(fact-aux (*a n) (- n 1)))))
+	(fact-aux (* a n) (- n 1)))))
 
 ;;; Convert to CPS
 
 (define cfact
   (λ (c n)
-    (c= (λ () (c 1)
-	   (λ () (c - (λ (nm1) ;; nm1 = n-1
-			(cfact (λ (fnm1)) ;; fnm1 = (n-1)!
 			       (c* c n fnm1))
 			nm1))
 	      n 1))
+    (c= (λ () (c 1))
+	(λ () (c- (λ (nm1) ;; nm1 = n-1
+		    (cfact (λ (fnm1) ;; fnm1 = (n-1)!
 	n 0)))
 
 (define cfact-tr
