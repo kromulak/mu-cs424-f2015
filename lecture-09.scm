@@ -12,6 +12,6 @@
 ;;;  (car (cons a d)) = a
 ;;;  (cdr (cons a d)) = d
 
-(define kons (λ (a d) (λ (x) (if x a d))))
-(define kar (λ (p) (p #t)))
-(define kdr (λ (p) (p #f)))
+(define kons (λ (a d) (λ (x) (x a d))))
+(define kar (λ (p) (p (λ (a d) a))))
+(define kdr (λ (p) (p (λ (a d) d))))
