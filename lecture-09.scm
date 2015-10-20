@@ -13,5 +13,7 @@
 ;;;  (cdr (cons a d)) = d
 
 (define kons (λ (a d) (λ (x) (x a d))))
-(define kar (λ (p) (p (λ (a d) a))))
-(define kdr (λ (p) (p (λ (a d) d))))
+(define fst (λ (a d) a))
+(define snd (λ (a d) d))
+(define kar (λ (p) (p fst)))
+(define kdr (λ (p) (p snd)))
