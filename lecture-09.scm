@@ -1,4 +1,5 @@
-;;; Migration of things out of the core and into library functions & macros
+;;; Migration of things out of the core and into library functions & macros.
+
 ;;; Or, writing things at user level instead of as internal magic system things.
 
 ;;; CPS - migrates "non-TR procedure calls" out
@@ -8,9 +9,9 @@
 ;;; Lists.
 
 ;;; List API
-;;; 	functions: cons, car, cdr
-;;; 	(car (cons a d)) = a
-;;; 	(cdr (cons a d)) = d
+;;;  functions: cons, car, cdr
+;;;  (car (cons a d)) = a
+;;;  (cdr (cons a d)) = d
 
 (define kons (λ (a d) (λ (x) (x a d))))
 (define fst (λ (a d) a))
@@ -21,6 +22,7 @@
 ;;; Object System defined using λ
 
 (define send (λ (obj selector . args)
+<<<<<<< HEAD
 			(apply obj `(, obj ,selector ,@args))))
 
 ;;; Make a complex number represented as real & imaginary parts
@@ -66,3 +68,8 @@
 
 (define complex-sqrt (λ (z) (make-polr (sqrt (send z 'abs))
 									   (/ (send z 'phase) 2))))
+
+;; > (send (send (complex-sqrt ii) '* (complex-sqrt ii)) 'real-part)
+;; 6.123233995736766e-17
+;; > (send (send (complex-sqrt ii) '* (complex-sqrt ii)) 'imag-part)
+;; 1.0
