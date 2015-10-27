@@ -1,4 +1,5 @@
 ;;; Migration of things out of the core and into library functions & macros.
+
 ;;; Or, writing things at user level instead of as internal magic system things.
 
 ;;; CPS - migrates "non-TR procedure calls" out
@@ -23,29 +24,28 @@
 (define send (λ (obj selector . args)
 	       (apply obj `(,obj ,selector ,@args))))
 
-;;; make a complex number represented as real & imaginary parts
+;;; Make a complex number represented as real & imaginary parts
 (define make-rect
   (λ (re im)
     (λ (self selector . args)
-      (cond ((equal? selector '+)
-	     (make-rect (+ re (send (car args) 'real-part))
-			       (+ im (send (car args) 'imag-part))))
+      (cond ((equal? selector '+) (make-rect (+ re (send (car args) 'real-part))
+					     (+ im (send (car args) 'imag-part))))
 	    ((equal? selector '*)
-	     (let ((y (car args)))
-	       (let ((re-y (send y 'real-part))
-		     (im-y (send y 'imag-part)))
-		 (make-rect (- (* re re-y) (* im im-y))
-				   (+ (* re im-y) (* im re-y))))))
+	     (let ((y (car args))))
+	     (let ((re-y (send y 'real-part))
+		   (im-y (send y 'imag-part)))
+	       (make-rect (- (* re re-y) (* im im-y))
+			  (+ (* re im-y) (* im re-y)))))
 	    ((equal? selector 'real-part) re)
 	    ((equal? selector 'imag-part) im)
 	    ((equal? selector 'abs) (sqrt (+ (* re re) (* im im))))
 	    ((equal? selector 'phase) (atan im re))
 	    (else (error "unknown operation" selector))))))
 
-(define ii (make-rect 0 1))
+(define ii (make-rect 0 1)) ;; makes a complex number with a real and imaginary element
 (define complex-minus-one (send ii '* ii))
 
-;;; make a complex number represented as magnitude & phase
+;;; Make a complex number represented as magnitude & phase
 (define make-polr
   (λ (mag phase)
     (λ (self selector . args)
@@ -65,8 +65,10 @@
 	    ((equal? selector 'imag-part) (* mag (sin phase)))
 	    (else (error "unknown operation" selector))))))
 
-(define complex-sqrt (λ (z) (make-polr (sqrt (send z 'abs))
-				       (/ (send z 'phase) 2))))
+(define complex-sqrt
+  (λ (z)
+    (make-polr (sqrt (send z 'abs))
+	       (/ (send z 'phase) 2))))
 
 ;; > (send (send (complex-sqrt ii) '* (complex-sqrt ii)) 'real-part)
 ;; 6.123233995736766e-17
