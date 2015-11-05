@@ -1,6 +1,6 @@
 # Lambda Calculus
 
-Alonzo Church -- 1940s
+[Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church) -- 1940s
 
 ## Grammar of Lambda Calculus
 
@@ -53,7 +53,7 @@ x y z
 
 (λ X . E1) E2 ↝ [X↦E2]E1
 
-### substitution
+### Substitution
 
 [X↦E2](E0 E1) = [X↦E2]E0 [X↦E2]E1
 
