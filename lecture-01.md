@@ -5,7 +5,7 @@ Course materials: http://github.com/barak/mu-cs424-f2015
 Introduction
 ------------
 What are programming languages?
-People invented computers wtihout the need for programming languages. People inputted instructions via patch panels. Next evolution of computing came with Program Storage Computers.
+People invented computers without the need for programming languages. People inputted instructions via patch panels. Next evolution of computing came with Program Storage Computers.
 
 Charles Babbage designed first computer however even with the resources at his disposal, his design was far too complex to implement. Ada Lovelace was known as a contributor to Babbages work.
 
