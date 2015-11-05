@@ -1,6 +1,12 @@
 ;;; Lambda calculus - Modelling the Natural Numbers
 
-;;; First two: equivalent up to α-renaming, second to are not.
+;;; Scheme is based on lambda calculus. There are some differences,
+;;; such as when there isn't one variable. Lambda calculus can only
+;;; have one variable, while Scheme can have more than that or even
+;;; none. In lambda calculus there's no concept of definitions or
+;;; recursion, just abbreviation.
+
+;;; First two: equivalent up to α-renaming, second two are not.
 ;;; a (λ x . x)
 ;;; a (λ y . y)
 ;;; b (λ y . y)
@@ -75,9 +81,12 @@
 
 ;; > (church-to-int ((mul two) three))
 ;; 6
+;; > (church-to-int ((mul three) three))
+;; 9
 
 ;;; This has a bug:
 (define expon (λ (n) (λ (m) (m (mul n)))))
+
 ;; > (church-to-int ((expon one) zero))
 ;; 1
 ;; > (church-to-int ((expon two) zero))
