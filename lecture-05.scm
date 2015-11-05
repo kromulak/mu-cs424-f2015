@@ -14,7 +14,7 @@
 ;;	...
 
 ;; Assembly Language:
-;;	push z # marshall the arguments
+;;	push z # marshal the arguments
 ;;	push y
 ;;	push x
 ;;	push L17
@@ -28,7 +28,7 @@
 ;;	return foo(x,y,z)    // This is a "tail recursive call"
 
 ;; Assembly Language:
-;;	push z # marshall the arguments
+;;	push z # marshal the arguments
 ;;	push y
 ;;	push x
 ;;	push L17
@@ -37,12 +37,12 @@
 ;;; Like forwarding a letter from me to you, back to me, then to 'Joe'.
 
 ;;; Three things are needed for the procedure call
-;;; 1. marshall the arguments
+;;; 1. marshal the arguments
 ;;; 2. branch to return
 ;;; 3. push return address
 
 ;; Assembly Language OPTIMIZED WITH TAIL RECURSION
-;;	push z # marshall the arguments
+;;	push z # marshal the arguments
 ;;	push y
 ;;	push x
 ;;	jump foo
@@ -119,7 +119,7 @@
 (define tbot (λ (t) t))
 ;;; Horrible to read but it happens inside the compiler (possibly even more horrible in reality)
 
-;;; What's preety cool about Tail Recursion - pretty clear loops
+;;; What's pretty cool about Tail Recursion - pretty clear loops
 
 ;;; sum_i={0,n} sqrt(i)
 (define ssqrt1
@@ -148,3 +148,4 @@
 ;;     (if (NONTR:zero? n)
 ;; 	t
 ;; 	(TR:ssqrt2-loop (NONTR:+ t (NONTR:sqrt n)) (NONTR:- n 1)))))
+
