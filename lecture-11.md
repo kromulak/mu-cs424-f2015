@@ -6,13 +6,10 @@ Alonzo Church -- 1940s
 
 E = term
 
-E ::= Variable | Application | Lambda-Expression
-
-Application ::= E E
-
-Lambda-Expression ::= λ Variable . E
-
-Variable ::= a | b | c | d | ...
+* E ::= Variable | Application | Lambda-Expression
+* Application ::= E E
+* Lambda-Expression ::= λ Variable . E
+* Variable ::= a | b | c | d | ...
 
 (parentheses used for grouping)
 
