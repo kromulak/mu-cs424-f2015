@@ -44,7 +44,7 @@
 
 (define lookup (λ (k alist) (cadr (assoc k alist))))
 ;;; assoc: checks a key and an association list
-;;; Returns the two elemant list or false if nothing is found
+;;; Returns the two element list or false if nothing is found
 
 (define global-env (list (list '+ (λ (x y) (+ x y)))
 			 (list '* (λ (x y) (* x y)))
@@ -52,9 +52,10 @@
 			 
 ;;; OTHER POINTS
 ;;; "member" returns a list starting with the element found
-		;;; i.e member 'b '(a b c d) returns (b c d)
+		;;; i.e. member 'b '(a b c d) returns (b c d)
 ;;; It returns false if the element is not found in the list
 		;;; i.e. member 'z '(a b c d) returns #f
 		
 ;;; "if" will return true (#t) for any value that is not explicitly false
 	;;; i.e. if(1) will evaluate to true
+

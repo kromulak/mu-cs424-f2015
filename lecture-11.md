@@ -1,18 +1,15 @@
 # Lambda Calculus
 
-Alonzo Church -- 1940s
+[Alonzo Church](https://en.wikipedia.org/wiki/Alonzo_Church) -- 1940s
 
 ## Grammar of Lambda Calculus
 
 E = term
 
-E ::= Variable | Application | Lambda-Expression
-
-Application ::= E E
-
-Lambda-Expression ::= λ Variable . E
-
-Variable ::= a | b | c | d | ...
+* E ::= Variable | Application | Lambda-Expression
+* Application ::= E E
+* Lambda-Expression ::= λ Variable . E
+* Variable ::= a | b | c | d | ...
 
 (parentheses used for grouping)
 
@@ -53,7 +50,7 @@ x y z
 
 (λ X . E1) E2 ↝ [X↦E2]E1
 
-### substitution
+### Substitution
 
 [X↦E2](E0 E1) = [X↦E2]E0 [X↦E2]E1
 

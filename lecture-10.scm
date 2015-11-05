@@ -101,9 +101,9 @@
 ;; We want to convert g into a recursive function.
 ;; Let's call (Y g) that recursive function.
 ;; We want the following property: (g (Y g)) = (Y g)
-;; In maths, when f(c) = c we say that c is a fixedpoint of f.
-;; We want to find a fixedpoint of g.
-;; We want (Y g) to be a fixedpoint of g.
+;; In maths, when f(c) = c we say that c is a fixed point of f.
+;; We want to find a fixed point of g.
+;; We want (Y g) to be a fixed point of g.
 
 ;; (define Y (λ (g) (g (Y g)))) ; won't work because...
 ;; (define Y (λ (g) (g (g (g (Y g)))))) ; ick...

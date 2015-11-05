@@ -5,12 +5,12 @@ Course materials: http://github.com/barak/mu-cs424-f2015
 Introduction
 ------------
 What are programming languages?
-People invented computers wtihout the need for programming languages. People inputted instructions via patch panels. Next evolution of computing came with Program Storage Computers.
+People invented computers without the need for programming languages. People inputted instructions via patch panels. Next evolution of computing came with Program Storage Computers.
 
-Charles Babbage designed first computer however even with the resources at his disposal, his design was far too complex to implement. Ada Lovelace was known as a contributor to Babbages work.
+Charles Babbage designed first computer however even with the resources at his disposal, his design was far too complex to implement. Ada Lovelace was known as a contributor to Babbage’s work.
 
-Just before WW2, the first Electronic Computer was invented by Conrad Zuessy.
-Also invented the one of the earliest programming languages which contained floating-point arithmetic among it's features -> Called 'Zwei Program'
+Just before WW2, the first Electronic Computer was invented by [Konrad Zuse]( https://en.wikipedia.org/wiki/Konrad_Zuse).
+Also invented the one of the earliest programming languages which contained floating-point arithmetic among its features -> Called 'Zwei Program'
 
 Efforts in Benchley Park were all done manually (See Alan Turing/Enigma machine). No programming language existed.
 
@@ -30,9 +30,9 @@ Assembly
 The first big leap in programming. Uses a symbolic language to translate to machine code.
 Big pain point with Assembly is that writing formulas can easily become difficult.
 
-Cobol
+COBOL
 -----
-* understandable-to-naive-reader syntax
+* Understandable-to-naive-reader syntax
 * [Admiral Grace Hopper](https://en.wikipedia.org/wiki/Grace_Hopper) is credited for developing the first iteration of the COBOL language as well as its compiler.
 * Very similar to FORTRAN stylistically
 * Very natural syntax 
@@ -73,7 +73,7 @@ Algol
    if zero(x) then begin print something; do something; end else begin ... end
 ````
 * was non-eager evaluation (instead call-by-need) (Algol68)
-* like Haskell (sorta: Haskell is "lazy")
+* like Haskell (sort of: Haskell is "lazy")
 
 Prolog
 ------
@@ -123,6 +123,3 @@ Some other nice features include:
 * Pure functions will never alter any state on the machine, thus guaranteeing that a function will produce the same output for the same input
 * Very good at parallelization
 * Pure functions cannot interfere with each other
-
-
-
