@@ -15,3 +15,11 @@ Administrative Matters
 * Scheme/Prolog/Haskell syntax highlighting or Markdown format.
 * In git, on GitHub.
 * Feel free to help with notes (fix typos as you read), send pull requests, etc.
+
+Reference Materials
+-------------------
+
+* Peter Selinger's Lecture notes on the lambda calculus, http://arxiv.org/abs/0804.3434
+* Blellock and Harper, λ-Calculus: The Other Turing Machine,
+  manuscript: https://www.cs.cmu.edu/~rwh/papers/lctotm/cs50.pdf
+  slides: https://www.cs.cmu.edu/~rwh/talks/cs50talk.pdf
