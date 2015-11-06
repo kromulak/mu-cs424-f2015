@@ -20,6 +20,6 @@ Reference Materials
 -------------------
 
 * Peter Selinger's Lecture notes on the lambda calculus, http://arxiv.org/abs/0804.3434
-* Blellock and Harper, λ-Calculus: The Other Turing Machine,
+* Blelloch and Harper, λ-Calculus: The Other Turing Machine,
   manuscript: https://www.cs.cmu.edu/~rwh/papers/lctotm/cs50.pdf
   slides: https://www.cs.cmu.edu/~rwh/talks/cs50talk.pdf
