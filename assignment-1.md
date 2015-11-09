@@ -29,7 +29,7 @@ Other useful documentation is
 * There is a wikibooks text, https://en.wikibooks.org/wiki/Scheme_Programming
 
 Please use only the "pure" subset of the language, meaning: nothing
-with an ! in it, no side effects, no I/O.
+with an ```!``` in it, no side effects, no I/O.
 
 (a) Finger Exercises
 --------------------
