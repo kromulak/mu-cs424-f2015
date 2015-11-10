@@ -15,13 +15,14 @@ Use the `define` keyword
 ```
 
 ### Lambdas λ
-A lambda function is an anonymous function
+A "lambda expression" yields an anonymous function
 ```scheme
-(lambda (x) (+ (* (x x) 1)))
+(lambda (x) (+ (* x x) 1))
+(λ (x) (+ (* x x) 1)) ; same
 ```
 
 ```scheme
-(define hypot (lambda (x y) (sqrt (+ (expt x 2) (expt y 2)))))
+(define hypot (λ (x y) (sqrt (+ (expt x 2) (expt y 2)))))
 ```
 
 ```scheme
@@ -57,7 +58,7 @@ one?: undefined;
  cannot reference undefined identifier
   context...:
    /usr/share/racket/collects/racket/private/misc.rkt:87:7
-> (define one? (lambda (x) (= x 1)))
+> (define one? (λ (x) (= x 1)))
 > one?
 #<procedure:one?>
 > (one? 2)
@@ -79,11 +80,11 @@ one?: undefined;
 ### Factorial
 ```scheme
 (define factorial
-  (lambda (n)
-    (if (<= n 0))
-      1
-      (* n
-        (factorial (- n 1)))))
+  (λ (n)
+    (if (= n 0))
+        1
+        (* n
+           (factorial (- n 1)))))
 ```
 
 ### Loading files
@@ -158,10 +159,10 @@ Make a list of 1 2 3 4
 ### Recursion
 ```scheme
 (define my-length
-  (Lambda (xs)
-    (If null? Xs
+  (λ (xs)
+    (if (null? xs)
       0
-      (My-length (cdr xs)))))
+      (my-length (cdr xs)))))
 ```
 
 ### Symbols
@@ -238,11 +239,11 @@ application: not a procedure;
 3
 > (* three three)
 9
-> (lambda (x) (+ (* x x) 1))
+> (λ (x) (+ (* x x) 1))
 #<procedure>
-> (  (lambda (x) (+ (* x x) 1))       three)
+> (  (λ (x) (+ (* x x) 1))       three)
 10
-> (define hypot (lambda (x y) (sqrt (+ (expt x 2) (expt y 2)))))
+> (define hypot (λ (x y) (sqrt (+ (expt x 2) (expt y 2)))))
 > (hypot 3 4)
 5
 > (hypot 6 8)
@@ -268,7 +269,7 @@ one?: undefined;
  cannot reference undefined identifier
   context...:
    /usr/share/racket/collects/racket/private/misc.rkt:87:7
-> (define one? (lambda (x) (= x 1)))
+> (define one? (λ (x) (= x 1)))
 > one?
 #<procedure:one?>
 > (one? 2)
@@ -287,7 +288,7 @@ one?: undefined;
 /: division by zero
   context...:
    /usr/share/racket/collects/racket/private/misc.rkt:87:7
-> (define fact (lambda (n) (if (zero? n) 1 (* n (fact (- n 1))))))
+> (define fact (λ (n) (if (zero? n) 1 (* n (fact (- n 1))))))
 > (fact 0)
 1
 > (fact 1)
@@ -306,12 +307,12 @@ one?: undefined;
 3000
 > (fact 0.5)
   C-c C-cuser break
-> (define fact (lambda (n) (if (<= n 0) 1 (* n (fact (- n 1))))))
+> (define fact (λ (n) (if (<= n 0) 1 (* n (fact (- n 1))))))
 > (/ (fact 3000) (fact 2999))
 3000
 > (fact 0.5)
 0.5
-> (define fact (lambda (n) (if (zero? n) 1 (* n (fact (- n 1))))))
+> (define fact (λ (n) (if (zero? n) 1 (* n (fact (- n 1))))))
 > (load "lecture-02.scm")
 > (load "lecture-02.scm")
 > (load "lecture-02.scm")
@@ -431,9 +432,9 @@ bazonk
 (define fact
   (λ (n)
     (if (zero? n)
-      1
-      (* n
-        (fact (- n 1))))))
+        1
+        (* n
+           (fact (- n 1))))))
 
 (define make-pair
   (λ (x y)
@@ -458,6 +459,6 @@ bazonk
 (define my-length
   (λ (xs)
     (if (null? xs)
-      0
-      (+ 1 (my-length (cdr xs))))))
+        0
+        (+ 1 (my-length (cdr xs))))))
 ````
