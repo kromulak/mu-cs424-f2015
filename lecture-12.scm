@@ -46,7 +46,7 @@
 ;;;  mul = λ n m . λ f . n (m f)
 
 ;;; Exponentiation:
-;;;  expon = λ n m . m (mul n)   [THIS HAS A BUG SEE BELOW!]
+;;;  expon = λ n m . m (mul n) one
 
 (define zero  (λ (f) (λ (x) x)))
 (define one   (λ (f) (λ (x) (f x))))
@@ -85,11 +85,23 @@
 ;; 9
 
 ;;; This has a bug:
-(define expon (λ (n) (λ (m) (m (mul n)))))
+(define expon (λ (n) (λ (m) ((m (mul n)) one))))
 
 ;; > (church-to-int ((expon one) zero))
 ;; 1
 ;; > (church-to-int ((expon two) zero))
 ;; 1
+;; > (church-to-int ((expon three) zero))
+;; 1
+;; > (church-to-int ((expon zero) two))
+;; 0
+;; > (church-to-int ((expon zero) three))
+;; 0
+;; > (church-to-int ((expon zero) zero))
+;; 1
 ;; > (church-to-int ((expon two) one))
-;; #<procedure:...4/lecture-12.scm:47:21>
+;; 2
+;; > (church-to-int ((expon two) two))
+;; 4
+;; > (church-to-int ((expon two) three))
+;; 8
