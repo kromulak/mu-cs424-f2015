@@ -23,3 +23,4 @@ Reference Materials
 * Blelloch and Harper, λ-Calculus: The Other Turing Machine,
   manuscript: https://www.cs.cmu.edu/~rwh/papers/lctotm/cs50.pdf
   slides: https://www.cs.cmu.edu/~rwh/talks/cs50talk.pdf
+* http://www-verimag.imag.fr/~iosif/LogicAutomata07/lambda-calculus-slides.pdf
