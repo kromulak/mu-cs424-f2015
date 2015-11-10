@@ -5,7 +5,7 @@ http://github.com/barak/mu-cs424-f2015
 
 * Instructor: Prof Barak A. Pearlmutter
 * Office: Computer Science, Ugly New Building room 132
-* Class: Mon 10:00 Arts B; Tue 11:00 Arts C
+* Class: Tue 09:00 CB1; Thu 14:00 CB1
 * Office Hours: TBA
 
 Administrative Matters
@@ -20,6 +20,7 @@ Reference Materials
 -------------------
 
 * Peter Selinger's Lecture notes on the lambda calculus, http://arxiv.org/abs/0804.3434
-* Blellock and Harper, λ-Calculus: The Other Turing Machine,
+* Blelloch and Harper, λ-Calculus: The Other Turing Machine,
   manuscript: https://www.cs.cmu.edu/~rwh/papers/lctotm/cs50.pdf
   slides: https://www.cs.cmu.edu/~rwh/talks/cs50talk.pdf
+* http://www-verimag.imag.fr/~iosif/LogicAutomata07/lambda-calculus-slides.pdf
