@@ -44,8 +44,11 @@ x y z
 ### β-reduction
 
 (λ x . a x b) c ↝ a c b
+
 (λ x . a x b) c d e ↝ a c b d e
+
 (λ x . a x b) (c d) e ↝ a (c d) b e
+
 (λ x . a x b) (c d e) ↝ a (c d e) b
 
 (λ X . E1) E2 ↝ [X↦E2]E1
