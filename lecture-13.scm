@@ -72,7 +72,7 @@
 ;; Looping Construct
 
 ;; Y Combinator
-;; finds fixedpoint
+;; finds fixed point
 
 ;; Y f = f (Y f)
 ;; Y = λ f . (λ x . f (x x)) (λ x . f (x x))
