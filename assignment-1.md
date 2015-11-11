@@ -21,6 +21,13 @@ as:
 * that includes a definition of ```test-it``` which runs your own test suite
 * and, if applicable, that passes my test suite.
 
+Also:
+
+* Programming in Scheme should be *fun!*  Therefore ...
+* No error checking: if it "takes a *foo*" or "is given a *foo*" you can assume its input is indeed a *foo.*  And if the input isn't a foo it's okay if monkeys come out of the user's nose, not your problem.
+* Comments are optional: get a grip, take a breath, write the code.
+* Please don't make up your own strange whitespace conventions: if you're really bored enough to do that maybe you can help me unpack the boxes in my office?
+
 Other useful documentation is
 
 * the R4RS manual, http://community.schemewiki.org/?R4RS
