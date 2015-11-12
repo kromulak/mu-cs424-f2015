@@ -75,7 +75,7 @@ Define the following functions:
 --------------------------------
 We represent λ-calculus terms as Scheme s-expressions, with variables
 as symbols, an application _E1 E2_ as ```(```_E1_``` ```_E2_```)```,
-and a λ expression _λ v . E_ as ```(λ ```_v_``` ```_E_```)```.
+and a λ expression _λ v . E_ as the s-expression ```(λ ```_v_``` ```_E_```)```.
 
 * Define ```(free-variables e)``` which returns the set (represented
   as a list without duplicates) of free variables in the term
