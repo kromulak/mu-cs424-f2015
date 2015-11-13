@@ -44,7 +44,7 @@ isZero 2 ↝ false<br>
 
 ####Typing Rules:
 
-We use Γ (a capital gamma) for a type environment, which is simply a mapping from symbols (basis symbols and variables) to types, (Γ : symbol → type). We write "Γ, v:τ" for the type environment Γ augmented with a mapping from v to τ. We use Γ ⊢ e:τ for the logical statement that, in the type environment Γ it can be shown that the term e has type τ. As in predicate calculus, we write assumptions above a horizontal line and consequences below.
+We use Γ (a capital gamma) for a type environment, which is simply a mapping from symbols (basis symbols and variables) to types, (Γ : symbol → type). We write "Γ, v:τ" for the type environment Γ augmented with a mapping from v to τ. We use Γ ⊢ e:τ for the logical statement that, in the type environment Γ it can be shown that the term e has type τ. As in predicate calculus, we write antecedents above a horizontal line and consequences below.
 
 Type "axioms", if v:τ or b:τ is in Γ, then Γ ⊢ v:τ or Γ ⊢ b:τ, respectively.
 
