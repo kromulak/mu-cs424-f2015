@@ -31,7 +31,7 @@ Note that the associativity of application (in the example term x y z) is on the
 #### Reductions
 Beta reduction stays the same, just drops the type.
 
-(λv:t . e<sub>1</sub>) e<sub>2</sub> ↝ [v ↦ e<sub>2</sub> ] e<sub>1</sub>
+(λv:t . e<sub>1</sub>) e<sub>2</sub> ↝ [v ↦ e<sub>2</sub>] e<sub>1</sub>
 
 This implies *The Erasure Theorem*: that any well-typed term in the simply typed lambda calculus will reduce to the same thing if you drop the types and reduce it in the untyped lambda calculus.
 
@@ -42,9 +42,9 @@ isZero 2 ↝ false
 
 ####Typing Rules:
 
-We use Γ (a capital gamma) for a type environment, which is simply a mapping from symbols (basis symbols and variables) to types, (Γ : symbol → type). We write "Γ, v:τ" for the type environment Γ augmented with a mapping from v to τ. We use Γ ⊢ e : τ for the logical statement that, in the type environment Γ it can be shown that the term e has type τ. As in predicate calculus, we write assumptions above a horizontal line and consequences below.
+We use Γ (a capital gamma) for a type environment, which is simply a mapping from symbols (basis symbols and variables) to types, (Γ : symbol → type). We write "Γ, v:τ" for the type environment Γ augmented with a mapping from v to τ. We use Γ ⊢ e:τ for the logical statement that, in the type environment Γ it can be shown that the term e has type τ. As in predicate calculus, we write assumptions above a horizontal line and consequences below.
 
-Type "axioms", if v:τ or b:τ is in Γ, then Γ ⊢ v:τ or  Γ ⊢ b:τ, respectively.
+Type "axioms", if v:τ or b:τ is in Γ, then Γ ⊢ v:τ or Γ ⊢ b:τ, respectively.
 
 Type rule for an application:
 ````
@@ -57,7 +57,7 @@ Type inference for a lambda expression:
 ````
       Γ, v:τ ⊢ e:τ'
 -----------------------
-  Γ ⊢ (λv:τ . e): τ →  τ'
+  Γ ⊢ (λv:τ . e): τ → τ’
 ````
 
 #### Type example
@@ -66,9 +66,9 @@ We will use the above to find the type of the term (λ x:int . λ y:bool . x) 3 
 
 Γ, x:int, y:bool ⊢ x:int
 --------------------------
-Γ,x:int ⊢ λ y:bool . x : bool → int
+Γ, x:int ⊢ λ y:bool . x : bool → int
 -----------------------------------
-Γ ⊢ (λ x:int . λ y:bool . x ):int → bool → int     Γ ⊢ 3:int
+Γ ⊢ (λ x:int . λ y:bool . x):int → bool → int     Γ ⊢ 3:int
 ------------------------------------------------------------
 Γ ⊢ (λ x:int . λ y:bool . x) 3 : bool → int                         Γ ⊢ false:bool
 ----------------------------------------------------------------------------------
