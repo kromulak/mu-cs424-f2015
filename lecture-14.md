@@ -20,7 +20,8 @@ This is the same as the untyped lambda calculus, except we have added some "basi
 For concreteness, we will take the basis objects to be numbers (0, 1, ...), numeric operators (plus, times, isZero), and booleans (false, true). And we will take the basis types to be **bool** and **int**.
 
 #### Example terms:
-x y z = (x y) z<br>
+x y z = (x y) z
+
 (times true) false
 
 #### Example type:
@@ -38,7 +39,8 @@ This implies *The Erasure Theorem*: that any well-typed term in the simply typed
 We also need to add reductions for the newly introduced basis objects. Like
 
 plus 2 3 ↝ 5<br>
-isZero 2 ↝ false
+isZero 2 ↝ false<br>
+...
 
 ####Typing Rules:
 
@@ -53,24 +55,23 @@ Type rule for an application:
        Γ ⊢ e1 e2 : τ
 ````
 
-Type inference for a lambda expression:
+Type rule for a lambda expression:
 ````
       Γ, v:τ ⊢ e:τ'
------------------------
+  ----------------------
   Γ ⊢ (λv:τ . e): τ → τ’
 ````
 
 #### Type example
-We will use the above to find the type of the term (λ x:int . λ y:bool . x) 3 false
+We will use the above to find the type of the term ```(λ x:int . λ y:bool . x) 3 false```
 ````
-
-Γ, x:int, y:bool ⊢ x:int
---------------------------
-Γ, x:int ⊢ λ y:bool . x : bool → int
------------------------------------
-Γ ⊢ (λ x:int . λ y:bool . x):int → bool → int     Γ ⊢ 3:int
-------------------------------------------------------------
-Γ ⊢ (λ x:int . λ y:bool . x) 3 : bool → int                         Γ ⊢ false:bool
-----------------------------------------------------------------------------------
-Γ ⊢ (λ x:int . λ y:bool . x) 3 false : int
+         Γ, x:int, y:bool ⊢ x:int
+    ------------------------------------
+    Γ, x:int ⊢ λ y:bool . x : bool → int
+---------------------------------------------
+Γ ⊢ (λ x:int . λ y:bool . x):int → bool → int        Γ ⊢ 3:int
+---------------------------------------------------------------
+      Γ ⊢ (λ x:int . λ y:bool . x) 3 : bool → int                 Γ ⊢ false:bool
+      --------------------------------------------------------------------------
+                    Γ ⊢ (λ x:int . λ y:bool . x) 3 false : int
 ````
