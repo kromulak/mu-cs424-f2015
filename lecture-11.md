@@ -44,15 +44,18 @@ x y z
 ### β-reduction
 
 (λ x . a x b) c ↝ a c b
+
 (λ x . a x b) c d e ↝ a c b d e
+
 (λ x . a x b) (c d) e ↝ a (c d) b e
+
 (λ x . a x b) (c d e) ↝ a (c d e) b
 
 (λ X . E1) E2 ↝ [X↦E2]E1
 
 ### Substitution
 
-[X↦E2](E0 E1) = [X↦E2]E0 [X↦E2]E1
+[X↦E2]\(E0 E1) = [X↦E2]E0 [X↦E2]E1
 
 [X↦E2]X = E2
 
@@ -60,15 +63,15 @@ x y z
   where:
     X and Y are different variables, i.e., X≠Y
 
-[X↦E2](λ X . E1) = λ X . E1
+[X↦E2]\(λ X . E1) = λ X . E1
 
-[X↦E2](λ Y . E1) = λ Y . [X↦E2]E1
+[X↦E2]\(λ Y . E1) = λ Y . [X↦E2]E1
  where:
    X and Y are different variables, i.e., X≠Y
  and
    Y is not a free variable in E2, i.e., Y ∉ Free(E2)
 
-[X↦E2](λ Y . E1) = λ Z . [X↦E2][Y↦Z]E2
+[X↦E2]\(λ Y . E1) = λ Z . [X↦E2][Y↦Z]E2
  where Z ∉ Free(E2), i.e., α-rename Y to protect occurrences of Y in E2
 
 ### α-renaming
