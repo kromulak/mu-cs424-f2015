@@ -100,3 +100,5 @@ and a λ expression _λ v . E_ as the s-expression ```(λ ```_v_``` ```_E_```)``
 
   ```(β-reduce '((λ x (((λ y (x y)) x) (x b))) y))```
   ⇒ ```#f```
+
+# Due 5pm (17:00) Friday 20-Nov-2015
