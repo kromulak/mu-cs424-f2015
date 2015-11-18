@@ -59,28 +59,29 @@ I.e., no infinite chains of reductions.
 The Curry-Howard Isomorphism says:
 
 - Type inference is logic inference (plus stuff).
-
-
-	Γ ⊢ e1 : A → B
-	Γ ⊢ e2 : A
-	Conclude: Γ ⊢ e2: A
-
-If we scribble out e1 and e2, we have the Modus Ponens rule.
+````
+Γ ⊢ e1 : A → B          Γ ⊢ e2 : A
+----------------------------------
+           Γ ⊢ e2 : A
+````
+If we scribble out e1 and e2 (the terms) leaving just the types, we have the Modus Ponens rule.
+````
+Γ ⊢ A → B          Γ ⊢ A
+------------------------
+         Γ ⊢ A
+````
 
 - Types are Predicate Calculus Theorems
 
+  Take ```e = (λ f . λ g . λ x . f ( g x ))``` applied to the three arguments ```isZero round π```.
 
-	Take:
-	(λ f . λ g . λ x . f ( g x )) isZero round π
-	Which has the type:
-	(int → bool) → (ℝ → int) -> ℝ -> bool
-	This is a logic rule.
+  Which has the type ```e : (int → bool) → (ℝ → int) -> ℝ -> bool```.
+  Considered as a logic statement instead of a type, this is a tautology.
 
 - Types of basis objects are axioms.
-
-
-	 b → T ∈ Γ
+````
+	 (b ↦ T) ∈ Γ
 	 ---------
 	 Γ ⊢ b : T
-
-Existence of term of type T is a proof of the logical statement T.
+````
+Existence of term of type ```T``` is a proof of the logical statement ```T```.
