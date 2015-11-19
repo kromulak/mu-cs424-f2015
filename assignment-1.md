@@ -114,8 +114,9 @@ Your test function might look something like this:
     (define tests
       (list (λ () (set-equal? (set-union '(a b c d e) '(c d e f g))
                               '(b d a c e g f)))
-            (λ () (set-equal? (free-variables '((a b) (λ c ((d c) (e b)))))
-                              '(a b d e)))))
+            (λ () (set-equal? (free-variables '((a b) (λ c ((d c) (e b))))) '(a b d e)))
+            (λ () (set-equal? (free-variables '((λ y y) (λ x y))) '(y)))
+			))
     (filter number?
             (map (λ (t i) (if (t) #f i))
                  tests
