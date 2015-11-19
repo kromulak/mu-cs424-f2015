@@ -101,4 +101,25 @@ and a λ expression _λ v . E_ as the s-expression ```(λ ```_v_``` ```_E_```)``
   ```(β-reduce '((λ x (((λ y (x y)) x) (x b))) y))```
   ⇒ ```#f```
 
+# Hints
+
+Your test function might look something like this:
+````scheme
+;;; Returns list of failed test cases.
+(define test-it
+  (λ ()
+    (define iota (λ (n)
+                   (define iota0 (λ (i) (if (= i n) '() (cons i (iota0 (+ i 1))))))
+                   (iota0 0)))
+    (define tests
+      (list (λ () (set-equal? (set-union '(a b c d e) '(c d e f g))
+                              '(b d a c e g f)))
+            (λ () (set-equal? (free-variables '((a b) (λ c ((d c) (e b)))))
+                              '(a b d e)))))
+    (filter number?
+            (map (λ (t i) (if (t) #f i))
+                 tests
+                 (iota (length tests))))))
+````
+
 # Due 5pm (17:00) Friday 20-Nov-2015
