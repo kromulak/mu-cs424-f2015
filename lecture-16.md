@@ -4,9 +4,9 @@ We have a notion of a properly-typed expression. There's typing over a λ-expres
 
 Type of an application
 ````
-Γ |- f : A -> B			Γ |- x : A
+Γ ⊢ f : A -> B			Γ ⊢ x : A
 ----------------------------------
-			 Γ |- f x : B
+			 Γ ⊢ f x : B
 ````
 
 What is a subtype?
@@ -31,9 +31,9 @@ We want ```sin 1``` to be okay.
 
 Type of an application *with subtypes*:
 ````
-Γ |- f : A -> B		Γ |- x : A'		Γ |- A' <= A
+Γ ⊢ f : A -> B		Γ ⊢ x : A'		Γ ⊢ A' <= A
 ------------------------------------------------
-				   Γ |- f x : B
+				   Γ ⊢ f x : B
 ````
 
 Subtype axioms:
@@ -83,19 +83,19 @@ Typing Rules for Records
 Type of empty record:
 ````
 ------------
-Γ |- {} : {}
+Γ ⊢ {} : {}
 ````
 Type of a record with a selector s:
 ````
-  Γ |- R : {RT...}     Γ |- e:A
+  Γ ⊢ R : {RT...}     Γ ⊢ e:A
   ------------------------------
-  Γ |- {R..., s|->e} : {RT..., s:A }
+  Γ ⊢ {R..., s|->e} : {RT..., s:A }
 ````
 Type of a term which accesses record with selector s:
 ````
-  Γ |- {s|->e}:{s:A}
+  Γ ⊢ {s|->e}:{s:A}
   ------------------
-	 Γ |- e.s : A
+	 Γ ⊢ e.s : A
 ````
 Subtyping of records:
 ````
