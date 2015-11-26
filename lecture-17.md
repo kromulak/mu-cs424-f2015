@@ -8,7 +8,7 @@ In simply typed λ calc, can only have grounded types:
 	
 	λ x:(Bool->Bool) -> (Real->Real->Real) . x
 	
-Want to write identity function with polymorphic type.
+We now want to write identity function with polymorphic type.
 
 Something like:
 
@@ -16,4 +16,9 @@ Something like:
 	
 In system F:
 
-	λ a . λ x . x
+	CAPITAL LAMBDA a . λ x . x
+	
+CAPITAL LAMBDA is like λ but accepts a "type" argument
+
+	(CAPITAL LAMBDA a . λ x : a . x) Real
+	~> λ x : Real .x

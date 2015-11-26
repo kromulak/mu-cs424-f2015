@@ -62,13 +62,13 @@ The Curry-Howard Isomorphism says:
 ````
 Γ ⊢ e1 : A → B          Γ ⊢ e2 : A
 ----------------------------------
-           Γ ⊢ e2 : A
+           Γ ⊢ e1 e2 : B
 ````
 If we scribble out e1 and e2 (the terms) leaving just the types, we have the Modus Ponens rule.
 ````
 Γ ⊢ A → B          Γ ⊢ A
 ------------------------
-         Γ ⊢ A
+         Γ ⊢ B
 ````
 
 - Types are Predicate Calculus Theorems
