@@ -17,3 +17,8 @@ Something like:
 In system F:
 
     Λ a . λ x : a . x
+
+Λ is like λ but accepts a "type" argument
+
+    (Λ a . λ x : a . x) Real
+    ↝ λ x : Real . x
