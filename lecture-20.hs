@@ -38,3 +38,7 @@ checkProper (Dist cProbPairs)
 
 (~=) :: Double -> Double -> Bool
 x ~= y = abs(x-y)<1e-6
+
+mapDist :: (Char -> Char) -> Dist -> Dist
+mapDist f (Dist cProbPairs) = Dist (map xform cProbPairs)
+  where xform (c,p) = (f c,p)
