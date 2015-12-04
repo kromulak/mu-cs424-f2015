@@ -1,11 +1,11 @@
 ------------------------- Algebraic Data Types -> Leading up to monads-------------------------
 
 -- equivalent to Java or C or C++ "enum"
--- Before we added the "deriving (Eq, Show), the colour objects 
+-- Before we added the "deriving (Eq, Show), the colour objects
 -- couldn't be printed, only pattern matched
 data Colour = Red | Blue | Green | Yellow | Orange
             deriving (Eq, Show)
-            
+
 -- This allows Colour to be a specific data type
 -- :t Red :: Colour
 -- :t [Red, Green, Blue] :: [Colour] (list of colours)
@@ -19,7 +19,7 @@ raCantSee _ = True
 -- equivalent to C "struct"
 data Point3D = Point3D Double Double Double
             deriving (Eq, Show)
-            
+
 -- :t Point3D :: D -> D -> D -> Point3D (takes 3 doubles, returns a 3D point)
 
 -- Can create a 3D point at console with: "Point3D 0.1 0.2 0.3" or similar
@@ -41,7 +41,7 @@ leftMost :: Shape -> Double
 leftMost (Line (Point3D x0 _ _) (Point3D x1 _ _)) = min x0 x1
 leftMost (Triangle (Point3D x0 _ _) (Point3D x1 _ _) (Point3D x2 _ _))
   = minimum [x0,x1,x2]
-  
+
 -- ASIDE, HASKELL CONVENTIONS:
 -- Regular Variables -> Lower Case
 -- Constructors / Function Names -> Upper Case
@@ -53,13 +53,13 @@ leftMost (Triangle (Point3D x0 _ _) (Point3D x1 _ _) (Point3D x2 _ _))
 -- Probability is over a list of finite objects, contains a list of objects + prob of each value.
 data Dist a = Dist [(a, Double)]
             deriving (Eq, Show)
-            
+
 -- We use the "a" above to parametrise the object. We originally had this set to char and it's
 -- functions only worked on chars. Now works on any data type. Lists are syntactic sugar for parametrised types.
 
 --Ensures the probability distribution sums to 1
 -- Again parametrised, originally didn't contain a in type declaration
--- all section ensures all values are between 0 and 1, doesnt care about parameter 
+-- all section ensures all values are between 0 and 1, doesnt care about parameter
 checkProper :: Dist a -> Bool
 checkProper (Dist cProbPairs)
   = sum (map snd cProbPairs) ~= 1
