@@ -98,7 +98,7 @@ scaleDist :: Double -> Dist a -> [(a,Double)]
 scaleDist s (Dist xps) = map (\(x,p) -> (x,s*p)) xps
 
 -- Distribution over fair 4-sided die
-let dd = Dist [(0,1/4),(1,1/4),(2,1/4),(3,1/4)]
+dd = Dist [(0,1/4),(1,1/4),(2,1/4),(3,1/4)]
 
 -- checkProper dd => True
 
