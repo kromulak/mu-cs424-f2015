@@ -54,51 +54,70 @@ import Prelude hiding ((.), succ, fst, snd)
 -- Exponentiation:
 --  expon = λ n m . m (mul n) one
 
-zero :: a -> b -> b
-zero  = \f x -> x
+type ChurchNum a = (a -> a) -> a -> a
 
-one :: (a -> b) -> a -> b
+zero :: ChurchNum a
+zero  = \_f x -> x
+
+one :: ChurchNum a
 one   = \f x -> f x
 
-two :: (a -> a) -> a -> a
+two :: ChurchNum a
 two   = \f x -> f (f (x))
 
-three :: (a -> a) -> a -> a
+three :: ChurchNum a
 three = \f x -> f (f (f (x)))
 
+succ :: ChurchNum a -> ChurchNum a
 -- "succ" named "inc" in lecture12 notes
 -- succ = \n . \f x . f (n f x)
 succ = \n -> \f x -> f (n f x)
 
+add :: ChurchNum (ChurchNum a) -> ChurchNum a -> ChurchNum a
 add = \n -> \m -> (n succ) m
 
+multiply :: ChurchNum a -> ChurchNum a -> ChurchNum a
 multiply = \n m f -> n (m f)
 
+exponential :: ChurchNum a -> ChurchNum (ChurchNum a) -> ChurchNum a
 exponential = \n -> \m -> m (multiply n) one
 
-churchToInt = \n -> n (+ 1) 0
+churchNumToInt :: Integral b => ChurchNum b -> b
+churchNumToInt = \n -> n (+ 1) 0
 
-churchToBool = \b -> (b True) False
+type ChurchBool a = a -> a -> a
+
+churchToBool :: ChurchBool Bool -> Bool
+churchToBool = \b -> b True False
 
 -- Representing Booleans
-brue :: a -> b -> a
-true = \x -> \y -> x
+true :: ChurchBool a
+true = \x -> \_y -> x
 
-false :: a -> b -> b
-false = \x -> \y -> y
+false :: ChurchBool a
+false = \_x -> \y -> y
 
 -- encoding pairs in Lambda Calculus is similar to cons in scheme
-pair = \x -> \y -> \b -> (b x) y
+type ChurchPair a = (a -> a -> a) -> a
+
+pair :: a -> a -> ChurchPair a
+pair = \x -> \y -> \b -> b x y
+fst :: ChurchPair a -> a
 fst = \p -> p true
+snd :: ChurchPair a -> a
 snd = \p -> p false
 
 -- composition of functions
 infixr 9 .                 -- setting operator precedence
+(.), compose :: (b -> c) -> (a -> b) -> (a -> c)
 f . g = \x -> f (g (x))
 compose = (.)
 
 
--- Combinators
+-- The SKI Combinators
+i :: a -> a
 i = \x -> x
-k = \x y -> x
+k :: a -> b -> a
+k = \x _y -> x
+s :: ((a -> b) -> b -> c) -> (a -> b) -> a -> c
 s = \x y z -> x y (y z)
