@@ -57,6 +57,19 @@ data Dist a = Dist [(a, Double)]
 -- We use the "a" above to parametrise the object. We originally had this set to char and it's
 -- functions only worked on chars. Now works on any data type. Lists are syntactic sugar for parametrised types.
 
+-- Giving 'Dist' an instance for Functor, Applicative and Monad, based on the
+-- types of the functions defined in this module.
+
+instance Functor Dist where
+  fmap = mapDist
+
+instance Applicative Dist where
+  pure = deltaProb
+  (<*>) = undefined
+
+instance Monad Dist where
+  (>>=) = mapDistDist
+
 --Ensures the probability distribution sums to 1
 -- Again parametrised, originally didn't contain a in type declaration
 -- all section ensures all values are between 0 and 1, doesnt care about parameter
