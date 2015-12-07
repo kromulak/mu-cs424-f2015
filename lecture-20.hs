@@ -67,7 +67,7 @@ instance Functor Dist where
 
 instance Applicative Dist where
   pure = deltaProb
-  (<*>) = undefined
+  pf <*> px = mapDistDist pf (\f -> mapDistDist px (pure . f))
 
 instance Monad Dist where
   (>>=) = mapDistDist
