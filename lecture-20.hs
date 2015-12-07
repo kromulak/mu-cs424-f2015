@@ -1,5 +1,7 @@
 ------------------------- Algebraic Data Types -> Leading up to monads-------------------------
 
+import Control.Applicative
+
 -- equivalent to Java or C or C++ "enum"
 -- Before we added the "deriving (Eq, Show), the colour objects
 -- couldn't be printed, only pattern matched
@@ -69,6 +71,7 @@ instance Applicative Dist where
 
 instance Monad Dist where
   (>>=) = mapDistDist
+  return = deltaProb
 
 --Ensures the probability distribution sums to 1
 -- Again parametrised, originally didn't contain a in type declaration
