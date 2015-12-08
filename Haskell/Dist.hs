@@ -1,9 +1,10 @@
 -- Represent a discrete probability distribution.
 -- Probabilities are nonnegative and must sum to one.
 
-module Dist (Dist, deltaProb, mapDistDist, checkProper,
-             mapDist, dd, scaleDist, dieToDistChar)
+module Dist (Dist(Dist), checkProper, normalize) -- Dist(Dist) exports both type and constructor
        where
+
+import Control.Applicative
 
 -- ASIDE, HASKELL CONVENTIONS:
 -- Regular Variables -> Lower Case
@@ -24,19 +25,23 @@ data Dist a = Dist [(a, Double)]
 -- types of the functions defined in this module.
 
 instance Functor Dist where
-  fmap = mapDist
+  -- Takes some function and a probability distribution and maps f onto Dist.
+  fmap f (Dist cProbPairs) = Dist (map (\(c,p)->(f c,p)) cProbPairs)
 
 instance Applicative Dist where
-  pure = deltaProb
-  pf <*> px = mapDistDist pf (\f -> mapDistDist px (pure . f))
+  pure = return
+  pf <*> px = pf >>= (\f -> px >>= (pure . f))
 
 instance Monad Dist where
-  (>>=) = mapDistDist
-  return = deltaProb
+  Dist xps >>= f = Dist (concat (map g xps))
+    where
+      g (x,p) = scale p (f x)
+      -- Scales up/down the distribution, returns list (since not proper distribution)
+      scale :: Double -> Dist a -> [(a,Double)]
+      scale s (Dist yps) = map (\(y,p) -> (y,s*p)) yps
+  return x = Dist [(x,1)]
 
---Ensures the probability distribution sums to 1
--- Again parametrised, originally didn't contain a in type declaration
--- all section ensures all values are between 0 and 1, doesnt care about parameter
+-- Checks if the probabilities in a distribution sum to 1.
 checkProper :: Dist a -> Bool
 checkProper (Dist cProbPairs)
   = sum (map snd cProbPairs) ~= 1
@@ -46,48 +51,11 @@ checkProper (Dist cProbPairs)
 (~=) :: Double -> Double -> Bool
 x ~= y = abs (x-y) < 1e-6
 
--- Non parametrised version:  mapDist :: (char -> char) -> Dist -> Dist
--- Takes some function and a probability distribution and maps f onto Dist.
-mapDist :: (a -> b) -> Dist a -> Dist b
-mapDist f (Dist cProbPairs) = Dist (map xform cProbPairs)
-  where xform (c,p) = (f c,p)
+-- Scales the probabilities to sum to one, in case they've drifted.
+-- (If floating point were exact this would be unnecessary.)
+normalize :: Dist a -> Dist a
+normalize (Dist xps) = Dist [(x,p/z) | (x,p) <- xps] where z = sum (map snd xps)
 
 -- Creating a Dist in console: "let d = Dist [('a', 0.5), ('b', 0.4), ('c', 0.1)]
 -- "checkProper d" => True
--- "mapDist (const '2') d" => checkProper will still return true, prob Dist not changed
-
-------------------------Probability over different distributions of coin tosses--------------------
-
--- P(Dice)
--- P(Coin | Dice)
--- together induce P(Coin) = sum_{Dice} P(Coin | Dice) P(Dice)
-
--- Concat will map a list of lists together
--- xps = pairs of x's and probabilities
--- p = probability of x
--- fx = probability of b's
-mapDistDist :: Dist a -> (a -> Dist b) -> Dist b
-mapDistDist (Dist xps) f = Dist (concat (map g xps))
-  where g (x,p) = scaleDist p (f x)
-
--- Scales up the distribution
-scaleDist :: Double -> Dist a -> [(a,Double)]
-scaleDist s (Dist xps) = map (\(x,p) -> (x,s*p)) xps
-
--- Distribution over fair 4-sided die
-dd = Dist [(0,1/4),(1,1/4),(2,1/4),(3,1/4)]
-
--- checkProper dd => True
-
--- Take an a and confirm it is definitely an a using a Dist
-deltaProb :: a -> Dist a
-deltaProb x = Dist [(x,1)]
-
--- Maps the probability across to a char distribution
-dieToDistChar :: Integer -> Dist Char
-dieToDistChar 0 = deltaProb 'a'
-dieToDistChar 1 = Dist [('c',1/2),('d',1/2)]
-dieToDistChar 2 = deltaProb 'b'
-dieToDistChar 3 = Dist [('b',1/3),('c',2/3)]
-
--- Console: mapDistDist dd dieToDistChar => Gives probability output of dd
+-- "fmap (const '2') d" => checkProper will still return true, prob Dist not changed
