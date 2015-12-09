@@ -39,10 +39,10 @@ dreidelDreidelDreidel :: Double -> Double -> Int -> Dist Double
 ````
 
 * Write a function
-````Haskell
-mean :: Dist Double -> Double
-````
-which calculates the mean value of a distribution of doubles.
+    ````Haskell
+    mean :: Dist Double -> Double
+    ````
+	which calculates the mean value of a distribution of doubles.
 
 * Find (by plotting and trial and error to give a rough value, or by
   writing an optimization routine for some extra credit) a value of p
@@ -51,9 +51,9 @@ which calculates the mean value of a distribution of doubles.
   ```mean (dreidelDreidelDreidel 1000 p 10)```.
 
 * Let us define
-````Haskell
-prHaveMoreThan target y0 p n = mean $ fmap (fromIntegral . fromEnum . (>= target)) $ dreidelDreidelDreidel y0 p n
-````
+    ````Haskell
+    prHaveMoreThan target y0 p n = mean $ fmap (fromIntegral . fromEnum . (>= target)) $ dreidelDreidelDreidel y0 p n
+    ````
 	which calculates the probability of ending up with more than ```target```.
 
 	Find (again, by an optimization routine for extra credit) a value
