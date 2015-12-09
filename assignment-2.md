@@ -69,7 +69,7 @@ Your assignment is to:
 	Find (again, by an optimization routine for extra credit) a value
 	of ```p``` which maximizes the chance of having over 4000 after
 	ten rounds of play starting with a pot of 1000, i.e., find ```p```
-	which maximizes ```mean (dreidelDreidelDreidel 4000 1000 p
+	which maximizes ```prExceeds 4000 (dreidelDreidelDreidel 1000 p
 	10))```.  What is this value of ```p```?  What is the probability
 	of ending up with over 4000 using that value?  What is the
 	expected (i.e., mean) amount ended up with?
