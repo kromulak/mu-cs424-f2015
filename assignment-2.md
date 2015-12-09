@@ -9,7 +9,7 @@ Haskell, using Monads in the process.
 Consider the following gamble.
 
 You can bet some amount of money ```x```.  A
-(dreidel)[https://en.wikipedia.org/wiki/Dreidel] is spun, with the
+[dreidel](https://en.wikipedia.org/wiki/Dreidel) is spun, with the
 following unusual rules: if the dreidel comes up ג you receive 10x,
 otherwise you lose your bet of x.  Since there is a ```1/4``` chance
 of a ג, your expected return is ```(1/4) * 10 * x = (5/2) * x```, so
