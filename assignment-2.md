@@ -75,7 +75,7 @@ Your assignment is to:
 	expected (i.e., mean) amount ended up with?
 
 What to turn in
-===============
+---------------
 
 * a *single* file
 * without anything unusual (like spaces or unicode) in the filename
@@ -89,3 +89,20 @@ What to turn in
 
 Happy Hanukkah!
 ===============
+Glossary
+--------
+###### Dreidel
+![Dreidel Image]
+(https://upload.wikimedia.org/wikipedia/commons/thumb/7/73/Dreidel_001.jpg/373px-Dreidel_001.jpg)
+###### Spin the dreidel for gelt
+![Spin the dreidel for gelt Image]
+(http://www.desi.com.au/blog/wp-content/themes/desi.com/images/festive-time5.jpg)
+###### [Heartwarming Story](http://www.timesunion.com/local/article/A-one-in-trillions-dreidel-game-2427950.php)
+![Winning at Dreidel Image]
+(http://ww2.hdnux.com/photos/07/42/02/1974401/3/920x920.jpg)
+###### Hanukkah Menorah
+![Hanukkah Menorah Image]
+(https://upload.wikimedia.org/wikipedia/commons/thumb/5/5a/Hanuka-Menorah-by-Gil-Dekel-2014.jpg/368px-Hanuka-Menorah-by-Gil-Dekel-2014.jpg)
+###### Barack Lighting Hanukkah Candles
+![Barack Lighting Hanukkah Candles Image]
+(http://3.bp.blogspot.com/-rmlj6TQI9FI/TvF5ECIEK_I/AAAAAAAA1TM/kBz3m7Iq_i4/s1600/How+to+light+a+Hanukkah+menorah.jpg)
