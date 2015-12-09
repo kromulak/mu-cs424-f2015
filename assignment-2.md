@@ -34,8 +34,8 @@ Your assignment is to:
   distribution of the amount of money you'll have if you start with a
   pot of y and bet a fraction p of what you have for n rounds.
 
-````Haskell
-dreidelDreidelDreidel :: Double -> Double -> Int -> Dist Double
+    ````Haskell
+    dreidelDreidelDreidel :: Double -> Double -> Int -> Dist Double
 ````
 
 * Write a function
@@ -52,17 +52,27 @@ dreidelDreidelDreidel :: Double -> Double -> Int -> Dist Double
 
 * Let us define
     ````Haskell
-    prHaveMoreThan target y0 p n = mean $ fmap (fromIntegral . fromEnum . (>= target)) $ dreidelDreidelDreidel y0 p n
+    prExceeds :: Double -> Dist Double -> Double
+    prExceeds target dist = mean $ fmap (fromIntegral . fromEnum . (>= target)) dist
     ````
-	which calculates the probability of ending up with more than ```target```.
+	which calculates the probability of a sample from a distribution
+	of Doubles exceeding ```target```.
+
+    Example:
+    ````
+    $ ghci
+	Prelude> :l Dreidel.hs
+    *Dreidel> prExceeds 2000 $ dreidelDreidelDreidel 1000 0.5 10
+    0.22412490844726563
+    ````
 
 	Find (again, by an optimization routine for extra credit) a value
 	of ```p``` which maximizes the chance of having over 4000 after
 	ten rounds of play starting with a pot of 1000, i.e., find ```p```
-	which maximizes ```mean (moreThan 4000 1000 p 10))```.  What is
-	this value of ```p```?  What is the probability of ending up
-	with over 4000 using that value?  What is the expected (i.e.,
-	mean) amount ended up with?
+	which maximizes ```mean (dreidelDreidelDreidel 4000 1000 p
+	10))```.  What is this value of ```p```?  What is the probability
+	of ending up with over 4000 using that value?  What is the
+	expected (i.e., mean) amount ended up with?
 
 What to turn in
 ===============
