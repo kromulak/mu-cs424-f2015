@@ -5,7 +5,7 @@ module Mebe ()
 data Mebe a = Nada | Gotta a
             deriving (Eq, Show)
 
-mebeRecip :: Double -> Mebe Double
+mebeRecip :: Double -> Mebe Double -- recip is reciprocal, i.e., recip = (1/)
 mebeRecip 0 = Nada
 mebeRecip x = Gotta (1/x)
 

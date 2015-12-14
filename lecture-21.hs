@@ -21,6 +21,9 @@ return a :: IO a
 -}
 
 -- ioChain = (>>=)
+	(infix operator)
+-}
+
 -- semicolon = (>>)
 
 putString :: [Char] -> IO ()

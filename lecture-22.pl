@@ -4,6 +4,8 @@
 
 %%% for all X, if man(X) then mortal(X).
 
+%%% The below lines are axioms in our database.
+
 %%% free variable X is implicitly "forall X":
 mortal(X) :- man(X).
 
@@ -32,32 +34,34 @@ female(frances).
 male(barak).
 male(fishel).
 
+%% Prolog starts pattern matching from the left.
+%% It's more efficient to start with a predicate with fewer solutions after :- (the "if" operator)
 father(X, Y) :- parent(X, Y), male(X).
 mother(X, Y) :- parent(X, Y), female(X).
 grandfather(X, Z) :- father(X, Y), parent(Y, Z).
 
-%%% Peano Arithmetic
+%%% Peano Arithmetic - an attempt to embed arithmetic in logic
 
-%% z				= zero
-%% s(s(s(z)))			= three
+%% z                            = zero
+%% s(s(s(z)))                   = three
 
 add(z,X,X).
 add(s(X),Y,s(Z)) :- add(X,Y,Z).
 
-%% | ?- add(X, s(s(Y)), s(s(s(s(s(z)))))).   
-%
+%% | ?- add(X, s(s(Y)), s(s(s(s(s(z)))))).
+%%
 %% X = z
 %% Y = s(s(s(z))) ? ;
-%
+%%
 %% X = s(z)
 %% Y = s(s(z)) ? ;
-%
+%%
 %% X = s(s(z))
 %% Y = s(z) ? ;
-%
+%%
 %% X = s(s(s(z)))
 %% Y = z ? ;
-%
+%%
 %% no
 
 mul(z, _, z).
@@ -79,17 +83,17 @@ mem2(X, Ys) :- append(_, [X|_], Ys).
 equals(X,X).
 
 %% | ?- equals(X,[the,quick,brown]).
-%% 
+%%
 %% X = [the,quick,brown]
-%% 
+%%
 %% yes
 %% | ?- equals([X,foo,bar],[the,Y,brown]).
-%% 
+%%
 %% no
-%% | ?- equals([X,foo,B],[the,Y,brown]).  
-%% 
+%% | ?- equals([X,foo,B],[the,Y,brown]).
+%%
 %% B = brown
 %% X = the
 %% Y = foo
-%% 
+%%
 %% yes
