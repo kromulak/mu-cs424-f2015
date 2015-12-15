@@ -78,6 +78,13 @@ Your assignment is to:
 	of ending up with over 4000 using that value of *p*?  What is the
 	expected (i.e., mean) amount ended up with?
 
+Newly Added Note
+----------------
+
+For a bit of extra credit, maximize the expected *log* return, and
+compare this to the earlier maximization of the expected return.
+Discuss.
+
 What to turn in
 ---------------
 
