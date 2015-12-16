@@ -2,6 +2,11 @@
 
 {-
 
+This lecture is split into three modules:
+- Dist         - Haskell/Dist.hs
+- Mebe (Maybe) - Haskell/Mebe.hs
+- IO           - lecture-21.hs
+
 putChar :: Char -> World -> (World, ())
 getChar ::         World -> (World, Char)
 
