@@ -135,6 +135,7 @@ We can make queries like 'find all values of X and Y such that X + (2+Y) = 5'
 
 ###Lists###
 append and member are already defined in Prolog so we use app and mem for our implementation
+
     %% .(1,.(2,.(3,[])))      %% three-element list in Prolog
     %% [1,2,3]                %% syntactic sugar for above
     %% [X|Ys]                 %% sugar for   .(X,Ys)
