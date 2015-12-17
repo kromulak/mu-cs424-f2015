@@ -1,69 +1,45 @@
--- Algebraic Data Types
+------------------------- Algebraic Data Types -> Leading up to monads-------------------------
+
+import Control.Applicative
 
 -- equivalent to Java or C or C++ "enum"
+-- Before we added the "deriving (Eq, Show), the colour objects
+-- couldn't be printed, only pattern matched
 data Colour = Red | Blue | Green | Yellow | Orange
-			deriving (Eq, Show)
-						
+            deriving (Eq, Show)
+
+-- This allows Colour to be a specific data type
+-- :t Red :: Colour
+-- :t [Red, Green, Blue] :: [Colour] (list of colours)
+
+-- Ray is partially colourblind and can't see Red, all other colours he can see
+-- The "_" is a don't care value, any other element in data type "Colour" returns True
 raCantSee :: Colour -> Bool
 raCantSee Red = False
 raCantSee _ = True
 
 -- equivalent to C "struct"
 data Point3D = Point3D Double Double Double
-			deriving (Eq, Show)
-			
-getX (Point3D x y z) = x			
+            deriving (Eq, Show)
+
+-- :t Point3D :: D -> D -> D -> Point3D (takes 3 doubles, returns a 3D point)
+
+-- Can create a 3D point at console with: "Point3D 0.1 0.2 0.3" or similar
+
+-- Return single element functions
+getX (Point3D x y z) = x
 getY (Point3D x y z) = y
 getZ (Point3D x y z) = z
 
 -- combines C "struct" nested inside "union"
+-- Allows us to specify multiple types of shapes
 data Shape = Line Point3D Point3D | Triangle Point3D Point3D Point3D
-			deriving (Eq, Show)
-			
-data Shape1 = Point3D ---> Point3D | Triangle Point3D Point3D Point3
-			deriving (Eq, Show)
-			
--- find leftmost x coord value
+            deriving (Eq, Show)
+
+-- find leftmost X Coordinate Value
+-- We use don't care values to show we only care about the min of the x's
+-- In the triangle, we need to use the minimum function as "min" only takes 2 arguments
 leftMost :: Shape -> Double
 leftMost (Line (Point3D x0 _ _) (Point3D x1 _ _)) = min x0 x1
-leftMost (Triangle (Point3D x0 _ _) (Point3D x1 _ _) (Point3D x2 _ _)) = minimum [x0,x1.x2]
-
--- Represent a discrete probability distribution
--- Probabilities are non-negative and must sum to one.
-data Dist = Dist [(Char,Double)]
-			deriving (Eq, Show)
-			
-CheckProper :: Dist -> Bool
-CheckProper (Dist cProbPairs)
-	= sum (map snd cProbPairs) ~= 1
-	&& all (\(_,p) -> 0<=p && p<=1) cProbPairs
-	
-(~=) :: Double -> Double -> Bool	
-x ~= y = abs(x-y)<1e-6
-
-mapDist :: (Char -> Char) -> Dist -> Dist
-mapDist (Dist cProbPairs) = Dist (map xform cProbPairs)
-	where xform (c,p) = (f c,p)
-	
--- P(Dice)
--- P(Coin | Dice)
--- together induce P(Coin) = sum_{Dice} P(Coin | Dice) P(Dice)
-
-mapDistDist :: Dist a -> (a -> Dist b) -> Dist b
-mapDistDist (Dist xps) f = Dist (concat (map g xps))
-	where g (x,p) = scaleDist p (f x)
-	
-scaleDist :: Double -> Dist a -> [(a,Double)]
-scaleDist s (Dist xps) = map (\(x,p) -> (x,s*p)) xps
-
--- Distribution over 4-sided die
-dd = Dist [(0,1/4),(1,1/4),(2,1/4),(3,1/4)]
-
-deltaProb :: a -> Dist a
-deltaProb x = Dist [(x,1)]
-
-dieToDistChar :: Integer -> Dist Char
-dieToDistChar 0 = deltaProb 'a'
-dieToDistChar 1 = Dist [('c',1/2),('d',1/2)]
-dieToDistChar 2 = deltaProb 'b'
-dieToDistChar 3 = Dist [('b',1/3),('c',1/3)]
+leftMost (Triangle (Point3D x0 _ _) (Point3D x1 _ _) (Point3D x2 _ _))
+  = minimum [x0,x1,x2]
