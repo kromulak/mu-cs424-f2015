@@ -50,6 +50,7 @@ wellTyped(E) :- hasType(E, _T, []).
 %% hasType(E, T, G) means expression E has type T in type env G.
 %% Previously written ...     G ⊫ E : T
 
+%% hasType(+,-,+)   %% means 1st & 3rd args known, 2nd not
 hasType(lambda(V,Tv,E), arr(Tv,Te), G) :- hasType(E, Te, [[V,Tv]|G]).
 hasType(app(E1,E2), T2, G) :-
 	hasType(E1, arr(T1,T2), G),
