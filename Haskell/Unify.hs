@@ -1,3 +1,5 @@
+import Control.Monad (guard)
+
 data Term = Term String [Term] | Hole LogicVariable
           deriving (Eq, Show)
 
@@ -8,9 +10,7 @@ type Unifier = [(LogicVariable,Term)]
 unify :: Term -> Term -> Unifier -> Maybe Unifier
 
 unify (Term aHead aArgs) (Term bHead bArgs) u
-  = if aHead == bHead
-    then unifyLists aArgs bArgs u
-    else Nothing
+  = guard (aHead == bHead) >> unifyLists aArgs bArgs u
 
 unify (Hole lvA) b@(Term _bHead _bArgs) u =
   maybe (Just ((lvA,b):u)) (\t->unify t b u) (lookup lvA u)
