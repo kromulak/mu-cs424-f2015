@@ -26,6 +26,7 @@ module Dist (Dist (Dist), checkProper, normalize) -- Dist(Dist) exports both typ
 -}
 
 import Control.Applicative
+import Control.Monad
 
 -- ASIDE, HASKELL CONVENTIONS:
 -- Regular Variables -> Lower Case
@@ -61,7 +62,7 @@ satisfy these laws.
 -}
 instance Functor Dist where
   -- | Takes some function and a probability distribution and maps f onto Dist.
-  fmap f (Dist cProbPairs) = Dist (map (\(c,p)->(f c,p)) cProbPairs)
+  fmap = liftM
 
 -- | A functor with application, providing operations to
 --
@@ -70,7 +71,7 @@ instance Functor Dist where
 -- * sequence computations and combine their results ('<*>').
 instance Applicative Dist where
   pure = return
-  pf <*> px = pf >>= flip fmap px
+  (<*>) = liftM2 ($)
 
 
 -- | Defines 'return' and '(>>=)' for the 'Dist' Type.
@@ -114,6 +115,7 @@ x ~= y = abs (x-y) < 1e-6
 normalize :: Dist a -> Dist a
 normalize (Dist xps) = Dist [(x,p/z) | (x,p) <- xps] where z = sum (map snd xps)
 
--- Creating a Dist in console: "let d = Dist [('a', 0.5), ('b', 0.4), ('c', 0.1)]
--- "checkProper d" => True
--- "fmap (const '2') d" => checkProper will still return true, prob Dist not changed
+-- Creating a Dist in console:
+--  let d = Dist [('a', 0.5), ('b', 0.4), ('c', 0.1)]
+--  checkProper d   =>   True
+--  fmap (const '2') d   =>   checkProper will still return true, prob Dist not changed
