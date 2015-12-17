@@ -70,7 +70,7 @@ instance Functor Dist where
 -- * sequence computations and combine their results ('<*>').
 instance Applicative Dist where
   pure = return
-  pf <*> px = pf >>= (\f -> px >>= (pure . f))
+  pf <*> px = pf >>= flip fmap px
 
 
 -- | Defines 'return' and '(>>=)' for the 'Dist' Type.
