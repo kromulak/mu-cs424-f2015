@@ -5,22 +5,22 @@ Also [learnXinYminutes.com](https://learnxinyminutes.com/docs/haskell/) for a qu
 
 #Prolog#
 File type: *.pl
-.pl is also associated with perl files so you need to switch emacs to [Prolog mode](http://www.emacswiki.org/emacs/PrologMode) 
+.pl is also associated with Perl files so you need to switch emacs to [Prolog mode](http://www.emacswiki.org/emacs/PrologMode) 
 `M-x prolog-mode`
 
- - Uppercase reserved for variables, eg X
- - lowercase for constants, eg aristotle
- - Relations instead of functions, eg `father(X,Y).` means father is a relation between X and Y
- - Make sure to end statements with a full stop, eg `mortal(X) :- dog(X).`
+ - Uppercase reserved for variables, e.g. X
+ - lowercase for constants, e.g. Aristotle
+ - Relations instead of functions, e.g. `father(X,Y).` means father is a relation between X and Y
+ - Make sure to end statements with a full stop, e.g. `mortal(X) :- dog(X).`
  - Uses % for comments
- - Be careful with order of axioms as can cause inf loops/crashes etc when interpreter tries to prove something
+ - Be careful with order of axioms as can cause infinite loops/crashes etc. when interpreter tries to prove something
  - Think of variables as logic variables and not as storage locations in memory like in other languages
 
 ###Background###
-Back in the 50s you had languages like Snowball (that was based on Strings). People would change the syntax slightly and call it a new language. As a result  there were lots of very similar languages. In the 70s there was attempts at new ways of looking at programming languages. One such result was Prolog.
+Back in the 50s you had languages like Snowball (that was based on Strings). People would change the syntax slightly and call it a new language. As a result, there were lots of very similar languages. In the 70s there was attempts at new ways of looking at programming languages. One such result was Prolog.
 
 Axioms
-It generally hard to tell if a program is right but its easy to agree on axioms. The idea of Prolog is write sets of logical axioms. If all axioms are true then the program must be true. 
+It generally hard to tell if a program is right but it’s easy to agree on axioms. The idea of Prolog is write sets of logical axioms. If all axioms are true, then the program must be true. 
 Caution: The order of axioms affects termination so your program may never end.
 
 ###Coding:###
@@ -45,9 +45,9 @@ Notice the above axioms are *if then* axioms.
 You can also have just *then* axioms.
 Using *then* axioms we can create a little Prolog database (aka facts)
 
-    man(aristotle).
-    dead(aristotle).
-    usedToBeAlive(aristotle).
+    man(Aristotle).
+    dead(Aristotle).
+    usedToBeAlive(Aristotle).
 
 From the terminal you can use [GNU-Prolog](http://www.gprolog.org/) using the command `gprolog` or you can use [swi](http://www.swi-prolog.org/). 
 (We are using GNU-Prolog in lectures)
@@ -56,8 +56,8 @@ You can load a Prolog file using
 
 >['Lecture-22.pl']
 
-When you make queries it tries to prove the conjecture and replys true
->mortal(aristotle)
+When you make queries it tries to prove the conjecture and replies true
+>mortal(Aristotle)
 >>true
 
 FYI
@@ -69,7 +69,7 @@ Prolog uses a specific way of proving called "Constructive Proof"
     mortal(X) :- usedToBeAlive(X), dead(X).
 Note the explicit free variable x means *for all* x but with queries free variables are explicit *there exists* an x.
 So a query like mortal(x) is asking it to prove if there is a x that is mortal. If there is it returns the value(s) for x that makes it true.
-Trying the query `mortal(naal)` will result in an uncaught exception error(existence error) because Prolog couldnt prove it.
+Trying the query `mortal(naal)` will result in an uncaught exception error (existence error) because Prolog couldn’t prove it.
 
 Add more to our Prolog file.
 
@@ -80,10 +80,10 @@ Add more to our Prolog file.
     
     female(ziva).
     female(soca).
-    parent(barak,ziva).
-    parent(barak,soca).
-    parent(fishel,barak).
-    parent(frances,barak).
+    parent(barak, ziva).
+    parent(barak, soca).
+    parent(fishel, barak).
+    parent(frances, barak).
     female(frances).
     male(barak).
     male(fishel).
@@ -96,7 +96,7 @@ Add more to our Prolog file.
 
 Note above if we had used `father(X, Y) :- male(X), parent(X, Y)` the system would have had to first prove the male part by going through all males and then check the parent part.
 
-####Peano Arithmatic####
+####Peano Arithmetic####
 
 Named after a guy called Peano who came up with [axioms](http://mathworld.wolfram.com/PeanosAxioms.html) in an attempt to embed arithmetic in logic
 
@@ -190,9 +190,9 @@ Very useful with lists, can make queries like what appended to A gives B etc.
     mortal(X) :- usedToBeAlive(X), dead(X).
     
     
-    man(aristotle).
-    dead(aristotle).
-    usedToBeAlive(aristotle).
+    man(Aristotle).
+    dead(Aristotle).
+    usedToBeAlive(Aristotle).
     
     dog(spot).
     dog(naal).
@@ -201,10 +201,10 @@ Very useful with lists, can make queries like what appended to A gives B etc.
     
     female(ziva).
     female(soca).
-    parent(barak,ziva).
-    parent(barak,soca).
-    parent(fishel,barak).
-    parent(frances,barak).
+    parent(barak, ziva).
+    parent(barak, soca).
+    parent(fishel, barak).
+    parent(frances, barak).
     female(frances).
     male(barak).
     male(fishel).
