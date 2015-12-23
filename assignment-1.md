@@ -10,7 +10,7 @@ interpreter in the Racket system, http://racket-lang.org, which I have
 been running in isolation in class.  I've been writing the code in
 Emacs, and running mzscheme from inside Emacs with ```M-x
 run-scheme```.  You are welcome to use the full Racket development
-environment instead, should you so desire.  In fact you are welcome to
+environment instead, should you so desire.  In fact, you are welcome to
 do your development however you wish; just make sure you turn it in
 as:
 
@@ -41,7 +41,7 @@ with an ```!``` in it, no side effects, no I/O.
 (a) Finger Exercises
 --------------------
 We represent a *set* as a list of unique elements, i.e., no duplicate
-elements, with order being irrelevant.  So the set *{a,b,c}* could be
+elements, with order being irrelevant.  So the set *{a, b, c}* could be
 represented as the list ```(c b a)``` or ```(a c b)```, but ```(a b c
 c)``` would be wrong.
 
