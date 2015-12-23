@@ -72,14 +72,14 @@
 	       a n))
 	 1 n)))
 
-;;cfact_aux:
+;; cfact_aux:
 ;;	push 1
 ;;	push n
 ;;	= L2
 ;;
-;;L1: push a
+;; L1: push a
 ;;	ret
-;;L2:	push a
+;; L2:	push a
 ;;	push n
 ;;	TIMES
 ;;	...
