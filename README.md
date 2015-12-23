@@ -1,5 +1,5 @@
 Class Notes and Materials for Maynooth University CS424, Fall 2015
-===============================================================
+==================================================================
 
 http://github.com/barak/mu-cs424-f2015
 
@@ -46,7 +46,7 @@ Reference Materials
   (10 very readable pages, with historic context and intuitions and
   exercises.)
 
-* Lambda-Calculus: Types And Models, by Jean-Louis Krivine, translated
+* Lambda-calculus: Types and Models, by Jean-Louis Krivine, translated
   from French by René Cori,
   http://www.pps.univ-paris-diderot.fr/~krivine/articles/Lambda.pdf
   (Full-length 206-page book, and an excellent one too!  Ends by
