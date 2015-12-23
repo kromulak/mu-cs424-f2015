@@ -35,7 +35,7 @@
 
 (define set-map-join
   (λ (f s)
-    (foldl set-union '() (map f s))) )
+    (foldl set-union '() (map f s))))
 
 (define free-variables
   (λ (e)
@@ -51,7 +51,7 @@
 
 (define β-reduce
   (λ (e)
-    (cond ((symbol? e) #f)	; var
+    (cond ((symbol? e) #f)		; var
 	  ((equal? (car e) 'λ)		; λ expression
 	   (let ((param (cadr e))
 		 (body (caddr e)))
@@ -72,9 +72,9 @@
 
 (define replace-in-term
   (λ (old new e)
-    (cond ((equal? old e) new)		;e is target variable
-	  ((symbol? e) e)		;e is non-target variable
-	  ((equal? (car e) 'λ)		;e is λ expression
+    (cond ((equal? old e) new)		; e is target variable
+	  ((symbol? e) e)		; e is non-target variable
+	  ((equal? (car e) 'λ)		; e is λ expression
 	   (let ((param (cadr e))
 		 (body (caddr e)))
 	     (cond ((equal? old param) e)
@@ -85,6 +85,6 @@
 			    (replace-in-term old new
 					     (replace-in-term param nv body)))))
 		   (else (list 'λ param (replace-in-term old new body))))))
-	  (else 			;e is application
+	  (else 			; e is application
 	   (list (replace-in-term old new (car e))
 		 (replace-in-term old new (cadr e)))))))
