@@ -12,7 +12,7 @@ data Colour = Red | Blue | Green | Yellow | Orange
 -- :t Red :: Colour
 -- :t [Red, Green, Blue] :: [Colour] (list of colours)
 
--- Ray is partially colourblind and can't see Red, all other colours he can see
+-- Ray is partially colour-blind and can't see Red, all other colours he can see
 -- The "_" is a don't care value, any other element in data type "Colour" returns True
 raCantSee :: Colour -> Bool
 raCantSee Red = False
