@@ -21,12 +21,12 @@ You start with an amount of money *y<sub>0</sub>*.  There are ten rounds of
 play, each play you bet $p$ times however much money you have,
 where *0 ≤ p ≤ 1*.
 
-If you set *p=1*, you are almost certain to lose all your money,
+If you set *p = 1*, you are almost certain to lose all your money,
 since the odds of winning all ten bets is 1 in 1,048,576, worse than
 one in a million.  (Although if you *do* win all ten bets you'll end
 up with an awful lot of money!)
 
-If you set *p=0*, you won't lose any money, but you also won't win
+If you set *p = 0*, you won't lose any money, but you also won't win
 any money.
 
 Your assignment is to:
@@ -108,7 +108,7 @@ Glossary
 ###### Spin the dreidel for gelt
 ![Spin the dreidel for gelt Image]
 (http://www.desi.com.au/blog/wp-content/themes/desi.com/images/festive-time5.jpg)
-###### [Heartwarming Story](http://www.timesunion.com/local/article/A-one-in-trillions-dreidel-game-2427950.php)
+###### [Heart-warming Story](http://www.timesunion.com/local/article/A-one-in-trillions-dreidel-game-2427950.php)
 ![Winning at Dreidel Image]
 (http://ww2.hdnux.com/photos/07/42/02/1974401/3/920x920.jpg)
 ###### Hanukkah Menorah
