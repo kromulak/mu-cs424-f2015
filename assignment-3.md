@@ -18,7 +18,7 @@ The goal of this assignment is to do a bit of programming in Prolog.
 	Ys = [b,d,f] ? ;
 
 	no
-	| ?- interleave([a,b,c,d,e,f],Ys,Zs).  
+	| ?- interleave([a,b,c,d,e,f], Ys, Zs).  
 
 	Ys = [A,B,C,D,E]
 	Zs = [a,A,b,B,c,C,d,D,e,E,f] ? ;
