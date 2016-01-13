@@ -9,7 +9,7 @@ File type: *.pl
 `M-x prolog-mode`
 
  - Uppercase reserved for variables, e.g. X
- - lowercase for constants, e.g. Aristotle
+ - lowercase for constants, e.g. aristotle
  - Relations instead of functions, e.g. `father(X,Y).` means father is a relation between X and Y
  - Make sure to end statements with a full stop, e.g. `mortal(X) :- dog(X).`
  - Uses % for comments
